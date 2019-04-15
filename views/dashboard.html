@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>Dashboard</title>
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+	    <link href="https://fonts.googleapis.com/css?family=Acme|Merriweather+Sans:300,400,700" rel="stylesheet">
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	    <script src="../public/javascripts/app.js" type="text/javascript"></script>
+	    <!-- Custom styles for this template-->
+	    <link href="../public/stylesheets/common.css" rel="stylesheet">
+	    <link href="../public/stylesheets/dashboard.css" rel="stylesheet">
+	    <!-- Include your custom css file here if you're making one -->
+	</head>
+
+	<body>		
+		<!-- Nav Bar-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
+	        <span class="navbar-brand center" id="logo"><em>UnivInfo</em></span>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	        	<div class="navbar-nav">
+	           		<a class="nav-item nav-link active" href="/dashboard">Dashboard</a>
+	            	<a class="nav-item nav-link" href="/Recommendations">Recommendations</a>
+	            	<a class="nav-item nav-link" href="/bestof">Best Of</a>
+	            	<a class="nav-item nav-link" href="/posters">Posters</a>
+	            	<a class="nav-item nav-link" href="/reference">Reference</a>
+	        	</div>
+	      	</div>
+	      	<div class="navbar-nav text-right">
+      			<button class="btn btn-success nav-btn"><a class="text-light" href="signup.html">Sign Up FREE!</a></button>
+    			<button class="btn btn-success nav-btn"><a class="text-light" href="login.html">Login</a></button>
+    		</div> 	      	
+	    </nav>
+
+	    <!-- Heading -->
+	    <div class="heading">
+	    	<h1 class="text-light text-center"> Locate your Dream at UnivInfo Today!</h1>
+	    </div>
+
+	    <!-- Custom Search Area -->
+	    <div class="input-group custom-search">
+		  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Custom Your Dream School">
+		  	
+		  <!-- Search key 1 -->
+		  <div class="input-group-append">
+		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Degree type</button>
+		    <div class="dropdown-menu">
+		    <a class="dropdown-item" href="#">Associate degree</a>
+		      <a class="dropdown-item" href="#">Bachlor's</a>
+		      <a class="dropdown-item" href="#">Master's</a>
+		      <a class="dropdown-item" href="#">Doctoral</a>
+		      <div role="separator" class="dropdown-divider"></div>
+		      <a class="dropdown-item" href="#">Separated link</a>
+		    </div>
+		  </div>
+		  
+		  <!-- Search Key 2 -->
+		  <div class="input-group-append">
+		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</button>
+		    <div class="dropdown-menu">
+		      <a class="dropdown-item" href="#">US East Coast</a>
+		      <a class="dropdown-item" href="#">US West Coast</a>
+		      <a class="dropdown-item" href="#">US Other</a>
+		      <a class="dropdown-item" href="#">Worldwide</a>
+		      <div role="separator" class="dropdown-divider"></div>
+		      <a class="dropdown-item" href="#">Separated link</a>
+		    </div>
+		  </div>
+		  
+		  <!-- Search Key 3 -->
+		  <div class="input-group-append">
+		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cost</button>
+		    <div class="dropdown-menu">
+		      <a class="dropdown-item" href="#">Under $10,000</a>
+		      <a class="dropdown-item" href="#">Under $20,000</a>
+		      <a class="dropdown-item" href="#">Under $40,000</a>
+		      <a class="dropdown-item" href="#">Under $60,000</a>
+		      <div role="separator" class="dropdown-divider"></div>
+		      <a class="dropdown-item" href="#">Separated link</a>
+		    </div>
+		  </div>
+		
+		</div>
+
+		<!-- Main Search Button -->
+		<div class="text-center"> 
+			<button type="button" class="main-btn btn btn-warning btn-lg center-block">Find Your School!</button>
+			<button type="button" class="main-btn btn btn-warning btn-lg center-block">Feeling Lucky?</button>
+		</div>
+
+
+	    <!-- SLIDES -->
+		<section id="testimonials"> 
+		<div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators" style="padding-bottom:15px;">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+		  
+		    <div class="carousel-inner">
+				<div class="carousel-item active container-fluid" style="background-color:#AE7C7C;">
+					<h2 class="slide-title"> Extremely helpful! </h2>
+					<h3 class="lyrics"> "I found tons of useful information, <br>throughout the application and admission process" </h3>
+					<img id="artist-img" src="../public/images/Dylan.jpg" alt="dylan">
+					<br>	 
+					<em class="art-note">- John Lennon, High school student from New York, Admitted to University of Pennsylvania</em>
+				</div>
+			
+				<div class="carousel-item container-fluid" style="background-color:#9692AF;">			
+					<h2 class="slide-title"> Really reassuring for parents like me </h2>			
+					<h3 class="lyrics"> "Whoo hoo, <br> I can just keep drinking beer now" </h3>
+					<img id="artist-img" src="../public/images/Radiohead.jpg" alt="radiohead">
+					<br>	 
+					<em class="art-note">- Homer Simpson, father of three from Springfield</em>
+				</div>
+			
+				<div class="carousel-item container-fluid" style="background-color:#96C4B2;">
+					<h2 class="slide-title"> I find my motivation and inspiration here, at UnivInfo </h2>
+					<h3 class="lyrics"> "I am so good at study,<br> gonna have a PhD degree" </h3>
+					<img id="artist-img" src="../public/images/Lianne.jpg" alt="lianne">
+					<br>	 
+					<em class="art-note">- Zion Willamson, college student at Duke, admitted to PhD program at Drexel University</em>
+				</div>	  
+			</div>
+			<a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a>
+			<a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
+		</div>	
+	    </section>
+
+		<!-- Footer -->
+		<footer class="footer text-light">
+			<p class="footer-txt">
+				© Copyright 2019 CIS550 Project Group, <br>
+				Kengpian Huang, Jiyun Duan, Jiaying Guo, Tianshuang Fu<br>
+				University of Pennsylvania, Philadelphia, PA 19104, USA.
+			</p>
+		</footer>
+	  
+
+	  <!-- Include these before the end of body tag in every HTML file -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	</body>
+</html>

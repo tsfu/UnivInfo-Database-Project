@@ -1,0 +1,97 @@
+
+body{
+	font-family: 'Merriweather Sans', sans-serif;
+}
+
+h1{
+	margin-top: 200px;
+	font-size: 4rem;
+	font-weight: bold;
+	font-family: 'Acme', sans-serif;
+}
+
+.nav-btn{
+	font-weight: bold;
+	margin-right: 25px;
+}
+
+.nav-item{
+	font-size: 1.15rem;
+	margin-right: 10px;
+}
+
+#logo{
+	font-weight: bold;
+	font-size: 2rem;
+	color: #009CAD;
+}
+
+.custom-search{
+	margin:100px auto 20px;
+	width:80%;
+}
+
+.main-btn{
+	display: inline;
+	font-weight:bold; 
+	font-size:1.5rem;
+	text-align: auto;
+	margin:75px 10px 50px;
+}
+
+
+#testimonials{
+	background-color:#7D7D7D;
+	text-align:center;
+	line-height:1.5rem;
+}
+
+.carousel-item{
+	padding:4rem 5rem 5rem;
+}
+
+.slide-title{
+	font-weight:bold; 
+	margin-bottom:15px; 
+	color:#EDEDED;
+	transition: all .5s ease-in-out;
+}
+
+.slide-title:hover{
+	transform:scale(1.2);
+}
+
+.lyrics{
+	color:#F2F2F2; 
+	padding-top:15px;
+}
+
+#artist-img{
+	width:150px;
+	height:200px;
+	border-radius:100%;
+	margin:2% 0% 2% 0%;
+	transition: all .5s ease-in-out;
+}
+
+#artist-img:hover{
+	transform:scale(1.15)
+}
+
+.art-note{
+	color:#F2F2F2; 
+	font-size:1.25rem;
+}
+
+.footer{
+	text-align: center;
+	background-color:#283E4A;
+	color:#AFAFAF;
+	padding:2% 0 2%
+}
+
+.footer-txt{
+	font-family:"Montserrat", sans-serif;
+	font-weight:400;
+	line-height:2rem;
+}
