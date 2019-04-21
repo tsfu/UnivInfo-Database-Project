@@ -18,3 +18,40 @@ body {
   padding: 2rem;
 }
 
+a:hover{
+  text-decoration: none;
+}
+
+input::-ms-input-placeholder{text-align: center;} 
+input::-webkit-input-placeholder{text-align: center;}
+
+.nav-btn{
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.navbar-header {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+#logo{
+  font-family: 'Acme',sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #009CAD;
+}
+
+.footer{
+  text-align: center;
+  background-color:#283E4A;
+  color:#AFAFAF;
+  padding:2% 0 2%
+}
+
+.footer-txt{
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  line-height:2rem;
+}

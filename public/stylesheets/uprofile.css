@@ -1,0 +1,51 @@
+
+
+a:hover{
+	text-decoration: none;
+}
+
+input::-ms-input-placeholder{text-align: center;} 
+input::-webkit-input-placeholder{text-align: center;}
+
+
+.left-col{
+	margin: 75px 20px 30px;
+}
+
+.right-col{
+	margin: 75px 0 30px;
+}
+
+.main-img{
+	width: 700px;
+	height: 380px;
+	margin-bottom: 30px;
+}
+
+.college-card{
+	margin:5px 10px 5px; 
+	background-color: #F5F5F5;
+}
+
+.card-img{
+	margin:5px 30px 5px;
+	width: 100px; 
+	height: 100px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.card-body{
+	padding: 15px;
+	line-height: 1.25rem;
+}
+
+.card-title{
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.card-bullets{
+	margin-top: 20px;
+}

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Dashboard</title>
+	    <title>UnivInfo</title>
 	    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
 	    <link href="https://fonts.googleapis.com/css?family=Acme|Merriweather+Sans:300,400,700" rel="stylesheet">
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -13,56 +13,45 @@
 	    <!-- Custom styles for this template-->
 	    <link href="../public/stylesheets/common.css" rel="stylesheet">
 	    <link href="../public/stylesheets/dashboard.css" rel="stylesheet">
-	    <!-- Include your custom css file here if you're making one -->
 	</head>
 
 	<body>		
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
-	        <span class="navbar-brand center" id="logo"><em>UnivInfo</em></span>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	        	<div class="navbar-nav">
-	           		<a class="nav-item nav-link active" href="/dashboard">Dashboard</a>
-	            	<a class="nav-item nav-link" href="/Recommendations">Recommendations</a>
-	            	<a class="nav-item nav-link" href="/bestof">Best Of</a>
-	            	<a class="nav-item nav-link" href="/posters">Posters</a>
-	            	<a class="nav-item nav-link" href="/reference">Reference</a>
-	        	</div>
-	      	</div>
-	      	<div class="navbar-nav text-right">
-      			<button class="btn btn-success nav-btn"><a class="text-light" href="signup.html">Sign Up FREE!</a></button>
-    			<button class="btn btn-success nav-btn"><a class="text-light" href="login.html">Login</a></button>
-    		</div> 	      	
+    		<a class="navbar-brand navbar-header" href="dashboard.html" id="logo"><em>UNIVINFO</em></a>
+      		<a class="navbar-right ml-auto text-light" href="login.html">
+      			<button class="btn btn-success navbar nav-btn">Login</button>
+      		</a>
 	    </nav>
-
+	   
 	    <!-- Heading -->
 	    <div class="heading">
 	    	<h1 class="text-light text-center"> Locate your Dream at UnivInfo Today!</h1>
 	    </div>
 
-	    <!-- Custom Search Area -->
-	    <div class="input-group custom-search">
-		  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Custom Your Dream School">
-		  	
+	    <!-- Main Search Bar -->
+	    <div class="input-group mb-3" id="name-search">
+  			<input type="text" class="form-control" placeholder="Your dream school...Try Harvard University?" 
+  			aria-label="Recipient's username" aria-describedby="basic-addon2">
+  			<div class="input-group-append">
+  				<a href="results.html"><button class="btn btn-warning" type="button"><i class="fas fa-search"></i> Find School!</button></a>
+  			</div>
+		</div>
+
+	  	<!-- Advanced Search Div -->
+		<div id="advanced-search">		
 		  <!-- Search key 1 -->
-		  <div class="input-group-append">
-		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Degree type</button>
+		    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Degree type</button>
 		    <div class="dropdown-menu">
-		    <a class="dropdown-item" href="#">Associate degree</a>
+		      <a class="dropdown-item" href="#">Associate degree</a>
 		      <a class="dropdown-item" href="#">Bachlor's</a>
 		      <a class="dropdown-item" href="#">Master's</a>
 		      <a class="dropdown-item" href="#">Doctoral</a>
 		      <div role="separator" class="dropdown-divider"></div>
 		      <a class="dropdown-item" href="#">Separated link</a>
 		    </div>
-		  </div>
-		  
 		  <!-- Search Key 2 -->
-		  <div class="input-group-append">
-		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</button>
+		    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</button>
 		    <div class="dropdown-menu">
 		      <a class="dropdown-item" href="#">US East Coast</a>
 		      <a class="dropdown-item" href="#">US West Coast</a>
@@ -71,11 +60,8 @@
 		      <div role="separator" class="dropdown-divider"></div>
 		      <a class="dropdown-item" href="#">Separated link</a>
 		    </div>
-		  </div>
-		  
 		  <!-- Search Key 3 -->
-		  <div class="input-group-append">
-		    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cost</button>
+		    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cost</button>
 		    <div class="dropdown-menu">
 		      <a class="dropdown-item" href="#">Under $10,000</a>
 		      <a class="dropdown-item" href="#">Under $20,000</a>
@@ -84,15 +70,31 @@
 		      <div role="separator" class="dropdown-divider"></div>
 		      <a class="dropdown-item" href="#">Separated link</a>
 		    </div>
-		  </div>
-		
+		  <!-- Go button -->
+		  <a href="results.html">
+		  <button class="btn-lg btn-warning btn-find" type="button"><i class="fas fa-sort-amount-down"></i> Find Customized School!</button>
+		  </a>
 		</div>
 
-		<!-- Main Search Button -->
+		<!-- Use Advanced Search & GoBack Button -->
 		<div class="text-center"> 
-			<button type="button" class="main-btn btn btn-warning btn-lg center-block">Find Your School!</button>
-			<button type="button" class="main-btn btn btn-warning btn-lg center-block">Feeling Lucky?</button>
+			<button type="button" class="btn btn-warning center-block text-dark mode-btn" id="adv-btn"
+				onclick="$('#advanced-search').toggle(); $('#name-search').toggle();
+						 $('#adv-btn').toggle(); $('#name-btn').toggle();">
+				Advanced Search
+			</button>
+			<button type="button" class="btn btn-outline-secondary center-block mode-btn" id="name-btn" style="display:none;"
+				onclick="$('#advanced-search').toggle(); $('#name-search').toggle();
+						 $('#adv-btn').toggle(); $('#name-btn').toggle();">
+				Go Back To Name Search
+			</button>
 		</div>
+
+
+		<!-- HeatMap Show -->
+	    <div>
+	    	<h1 style="text-align: center;">Heatmap here</h1>
+	    </div>
 
 
 	    <!-- SLIDES -->

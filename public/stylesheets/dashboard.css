@@ -10,33 +10,56 @@ h1{
 	font-family: 'Acme', sans-serif;
 }
 
-.nav-btn{
-	font-weight: bold;
-	margin-right: 25px;
+a:hover{
+	text-decoration: none;
 }
 
-.nav-item{
-	font-size: 1.15rem;
+input::-ms-input-placeholder{text-align: center;} 
+input::-webkit-input-placeholder{text-align: center;}
+
+.nav-btn{
+	font-weight: bold;
 	margin-right: 10px;
 }
 
+.navbar-header {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
 #logo{
+	font-family: 'Acme',sans-serif;
 	font-weight: bold;
 	font-size: 2rem;
 	color: #009CAD;
 }
 
-.custom-search{
-	margin:100px auto 20px;
-	width:80%;
+#name-search{
+	margin:100px auto 22px;
+	width:60%;
 }
 
-.main-btn{
+#advanced-search{
+	display: none;
+	margin:100px auto 20px;
+	text-align: center;
+}
+
+.btn-cus{
+	margin-right: 15px;
+}
+
+.btn-find{
+	margin-left: 50px;
+	font-weight: bold;
+}
+
+.mode-btn{
 	display: inline;
 	font-weight:bold; 
-	font-size:1.5rem;
 	text-align: auto;
-	margin:75px 10px 50px;
+	margin:50px 10px 50px;
 }
 
 
@@ -81,17 +104,4 @@ h1{
 .art-note{
 	color:#F2F2F2; 
 	font-size:1.25rem;
-}
-
-.footer{
-	text-align: center;
-	background-color:#283E4A;
-	color:#AFAFAF;
-	padding:2% 0 2%
-}
-
-.footer-txt{
-	font-family:"Montserrat", sans-serif;
-	font-weight:400;
-	line-height:2rem;
 }
