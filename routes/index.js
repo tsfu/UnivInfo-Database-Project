@@ -3,11 +3,11 @@ var router = express.Router();
 var path = require('path');
 
 // Connect string to MySQL
-var mysql = require('mysql');
+var mysql = require('oracledb');
 
 
 
-var connection = mysql.createConnection({
+var connection = oracledb.createConnection({
   host: 'ENTER HOST HERE',
   user: 'ENTER USER HERE',
   password: 'ENTER PSW HERE',
