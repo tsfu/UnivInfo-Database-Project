@@ -46,6 +46,11 @@ input::-webkit-input-placeholder{text-align: center;}
 	text-align: center;
 }
 
+.st-menu{
+   height: 250px;
+   overflow: auto;
+}
+
 .btn-cus{
 	margin-right: 15px;
 }
