@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="DBProject">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +15,7 @@
 	    <link href="/stylesheets/dashboard.css" rel="stylesheet">
 	</head>
 
-	<body>		
+	<body ng-controller="dashboardController">		
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
     		<a class="navbar-brand navbar-header" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
@@ -40,110 +40,99 @@
 
 	  	<!-- Advanced Search Div -->
 		<div id="advanced-search">	
-		  <!-- Search key 1 -->
-		  	<div class="btn-group">
-			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Institute Type</button>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">Public</a>
-			      <a class="dropdown-item" href="#">Private</a>
-			      <a class="dropdown-item" href="#">Community</a>
-			      <div role="separator" class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">default</a>
-			    </div>
-			</div>
-		  <!-- Search Key 2 -->
-		  	<div class="btn-group">
-			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</button>
-			    <div class="dropdown-menu st-menu">
-			      <a href="#" value="AL" class="dropdown-item">Alabama</option>
-				  <a href="#" value="AK" class="dropdown-item">Alaska</option>
-				  <a href="#" value="AZ" class="dropdown-item">Arizona</option>
-				  <a href="#" value="AR" class="dropdown-item">Arkansas</option>
-				  <a href="#" value="CA" class="dropdown-item">California</option>
-				  <a href="#" value="CO" class="dropdown-item">Colorado</option>
-				  <a href="#" value="CT" class="dropdown-item">Connecticut</option>
-				  <a href="#" value="DE" class="dropdown-item">Delaware</option>
-				  <a href="#" value="DC" class="dropdown-item">District Of Columbia</option>
-				  <a href="#" value="FL" class="dropdown-item">Florida</option>
-				  <a href="#" value="GA" class="dropdown-item">Georgia</option>
-				  <a href="#" value="HI" class="dropdown-item">Hawaii</option>
-				  <a href="#" value="ID" class="dropdown-item">Idaho</option>
-				  <a href="#" value="IL" class="dropdown-item">Illinois</option>
-				  <a href="#" value="IN" class="dropdown-item">Indiana</option>
-				  <a href="#" value="IA" class="dropdown-item">Iowa</option>
-				  <a href="#" value="KS" class="dropdown-item">Kansas</option>
-				  <a href="#" value="KY" class="dropdown-item">Kentucky</option>
-				  <a href="#" value="LA" class="dropdown-item">Louisiana</option>
-				  <a href="#" value="ME" class="dropdown-item">Maine</option>
-				  <a href="#" value="MD" class="dropdown-item">Maryland</option>
-				  <a href="#" value="MA" class="dropdown-item">Massachusetts</option>
-				  <a href="#" value="MI" class="dropdown-item">Michigan</option>
-				  <a href="#" value="MN" class="dropdown-item">Minnesota</option>
-				  <a href="#" value="MS" class="dropdown-item">Mississippi</option>
-				  <a href="#" value="MO" class="dropdown-item">Missouri</option>
-				  <a href="#" value="MT" class="dropdown-item">Montana</option>
-				  <a href="#" value="NE" class="dropdown-item">Nebraska</option>
-				  <a href="#" value="NV" class="dropdown-item">Nevada</option>
-				  <a href="#" value="NH" class="dropdown-item">New Hampshire</option>
-				  <a href="#" value="NJ" class="dropdown-item">New Jersey</option>
-				  <a href="#" value="NM" class="dropdown-item">New Mexico</option>
-				  <a href="#" value="NY" class="dropdown-item">New York</option>
-				  <a href="#" value="NC" class="dropdown-item">North Carolina</option>
-				  <a href="#" value="ND" class="dropdown-item">North Dakota</option>
-				  <a href="#" value="OH" class="dropdown-item">Ohio</option>
-				  <a href="#" value="OK" class="dropdown-item">Oklahoma</option>
-				  <a href="#" value="OR" class="dropdown-item">Oregon</option>
-				  <a href="#" value="PA" class="dropdown-item">Pennsylvania</option>
-				  <a href="#" value="RI" class="dropdown-item">Rhode Island</option>
-				  <a href="#" value="SC" class="dropdown-item">South Carolina</option>
-				  <a href="#" value="SD" class="dropdown-item">South Dakota</option>
-				  <a href="#" value="TN" class="dropdown-item">Tennessee</option>
-				  <a href="#" value="TX" class="dropdown-item">Texas</option>
-				  <a href="#" value="UT" class="dropdown-item">Utah</option>
-				  <a href="#" value="VT" class="dropdown-item">Vermont</option>
-				  <a href="#" value="VA" class="dropdown-item">Virginia</option>
-				  <a href="#" value="WA" class="dropdown-item">Washington</option>
-				  <a href="#" value="WV" class="dropdown-item">West Virginia</option>
-				  <a href="#" value="WI" class="dropdown-item">Wisconsin</option>
-				  <a href="#" value="WY" class="dropdown-item">Wyoming</option>
-			      <div role="separator" class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">Other location</a>
-			    </div>
-			</div>
-		  <!-- Search Key 3 -->
-		  	<div class="btn-group">
-			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cost</button>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">Under $10,000</a>
-			      <a class="dropdown-item" href="#">Under $20,000</a>
-			      <a class="dropdown-item" href="#">Under $40,000</a>
-			      <a class="dropdown-item" href="#">Under $60,000</a>
-			      <div role="separator" class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">default</a>
-			    </div>
-			</div>
-		  <!-- Search key 4 -->
-		  	<div class="btn-group">
-			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rankings</button>
-			    <div class="dropdown-menu">
-			      <a class="dropdown-item" href="#">Top 50</a>
-			      <a class="dropdown-item" href="#">50-100</a>
-			      <a class="dropdown-item" href="#">100-150</a>
-			      <a class="dropdown-item" href="#">150+</a>
-			      <div role="separator" class="dropdown-divider"></div>
-			      <a class="dropdown-item" href="#">default</a>
-			    </div>
-			</div>
+			<div class="input-group select-group">
+		  		<!-- Search key 1 -->
+		  		<select class="adv-select" ng-model="typeSelected">
+				    <option selected>Institute Type:</option>
+				    <option value="1">Public</option>
+				    <option value="2">Private</option>
+				    <option value="3">Community</option>
+			    </select>
+			
+		  		<!-- Search Key 2 -->
+		  		<select class="adv-select" name="state" ng-model="stateSelected">
+				  <option value="" selected="selected">Select a State</option>
+				  <option value="AL">Alabama</option>
+				  <option value="AK">Alaska</option>
+				  <option value="AZ">Arizona</option>
+				  <option value="AR">Arkansas</option>
+				  <option value="CA">California</option>
+				  <option value="CO">Colorado</option>
+				  <option value="CT">Connecticut</option>
+				  <option value="DE">Delaware</option>
+				  <option value="DC">District Of Columbia</option>
+				  <option value="FL">Florida</option>
+				  <option value="GA">Georgia</option>
+				  <option value="HI">Hawaii</option>
+				  <option value="ID">Idaho</option>
+				  <option value="IL">Illinois</option>
+				  <option value="IN">Indiana</option>
+				  <option value="IA">Iowa</option>
+				  <option value="KS">Kansas</option>
+				  <option value="KY">Kentucky</option>
+				  <option value="LA">Louisiana</option>
+				  <option value="ME">Maine</option>
+				  <option value="MD">Maryland</option>
+				  <option value="MA">Massachusetts</option>
+				  <option value="MI">Michigan</option>
+				  <option value="MN">Minnesota</option>
+				  <option value="MS">Mississippi</option>
+				  <option value="MO">Missouri</option>
+				  <option value="MT">Montana</option>
+				  <option value="NE">Nebraska</option>
+				  <option value="NV">Nevada</option>
+				  <option value="NH">New Hampshire</option>
+				  <option value="NJ">New Jersey</option>
+				  <option value="NM">New Mexico</option>
+				  <option value="NY">New York</option>
+				  <option value="NC">North Carolina</option>
+				  <option value="ND">North Dakota</option>
+				  <option value="OH">Ohio</option>
+				  <option value="OK">Oklahoma</option>
+				  <option value="OR">Oregon</option>
+				  <option value="PA">Pennsylvania</option>
+				  <option value="RI">Rhode Island</option>
+				  <option value="SC">South Carolina</option>
+				  <option value="SD">South Dakota</option>
+				  <option value="TN">Tennessee</option>
+				  <option value="TX">Texas</option>
+				  <option value="UT">Utah</option>
+				  <option value="VT">Vermont</option>
+				  <option value="VA">Virginia</option>
+				  <option value="WA">Washington</option>
+				  <option value="WV">West Virginia</option>
+				  <option value="WI">Wisconsin</option>
+				  <option value="WY">Wyoming</option>
+				</select>
+			
+		    	<!-- Search Key 3 -->
+		  		<select class="adv-select" ng-model="costSelected">
+				    <option selected>Choose Cost:</option>
+				    <option value="1">Under $10,000</option>
+				    <option value="2">Under $30,000</option>
+				    <option value="3">Under $50,000</option>
+			    </select>
 		  
-		  <!-- Go button -->
-		  <a href="/results">
-		  <button class="btn-lg btn-warning btn-find" type="button"><i class="fas fa-sort-amount-down"></i> Find Customized School!</button>
-		  </a>
+		  		<!-- Search key 4 -->
+		  		<select class="adv-select" ng-model="rankingSelected">
+				    <option selected>Choose Ranking:</option>
+				    <option value="3">Top 10</option>
+				    <option value="1">Top 50</option>
+				    <option value="2">Top 100</option>
+				    <option value="3">Top 200</option>
+			    </select>
+			</div>
+
+			<!-- Go button -->
+			<a href="/results">
+	  		<button class="btn-lg btn-warning btn-find input-group-append" type="button"><i class="fas fa-sort-amount-down"></i> Find Customized School!</button>
+	  		</a>
 		</div>
+
 
 		<!-- Use Advanced Search & GoBack Button -->
 		<div class="text-center"> 
-			<button type="button" class="btn btn-warning center-block text-dark mode-btn" id="adv-btn"
+			<button type="button" class="btn-lg btn-warning center-block text-dark mode-btn" id="adv-btn"
 				onclick="$('#advanced-search').toggle(); $('#name-search').toggle();
 						 $('#adv-btn').toggle(); $('#name-btn').toggle();">
 				Advanced Search
