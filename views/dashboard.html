@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>UnivInfo</title>
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+	    <link href="https://fonts.googleapis.com/css?family=Acme|Merriweather+Sans:300,400,700" rel="stylesheet">
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	    <script src="../public/javascripts/app.js" type="text/javascript"></script>
+	    <!-- Custom styles for this template-->
+	    <link href="../public/stylesheets/common.css" rel="stylesheet">
+	    <link href="../public/stylesheets/dashboard.css" rel="stylesheet">
+	</head>
+
+	<body>		
+		<!-- Nav Bar-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
+    		<a class="navbar-brand navbar-header" href="dashboard.html" id="logo"><em>UNIVINFO</em></a>
+      		<a class="navbar-right ml-auto text-light" href="login.html">
+      			<button class="btn btn-success navbar nav-btn">Login</button>
+      		</a>
+	    </nav>
+	   
+	    <!-- Heading -->
+	    <div class="heading">
+	    	<h1 class="text-light text-center"> Locate your Dream at UnivInfo Today!</h1>
+	    </div>
+
+	    <!-- Main Search Bar -->
+	    <div class="input-group mb-3" id="name-search">
+  			<input type="text" class="form-control" placeholder="Your dream school...Try Harvard University?" 
+  			aria-label="Recipient's username" aria-describedby="basic-addon2">
+  			<div class="input-group-append">
+  				<a href="results.html"><button class="btn btn-warning" type="button"><i class="fas fa-search"></i> Find School!</button></a>
+  			</div>
+		</div>
+
+	  	<!-- Advanced Search Div -->
+		<div id="advanced-search">	
+		  <!-- Search key 1 -->
+		  	<div class="btn-group">
+			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Institute Type</button>
+			    <div class="dropdown-menu">
+			      <a class="dropdown-item" href="#">Public</a>
+			      <a class="dropdown-item" href="#">Private</a>
+			      <a class="dropdown-item" href="#">Community</a>
+			      <div role="separator" class="dropdown-divider"></div>
+			      <a class="dropdown-item" href="#">default</a>
+			    </div>
+			</div>
+		  <!-- Search Key 2 -->
+		  	<div class="btn-group">
+			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</button>
+			    <div class="dropdown-menu st-menu">
+			      <a href="#" value="AL" class="dropdown-item">Alabama</option>
+				  <a href="#" value="AK" class="dropdown-item">Alaska</option>
+				  <a href="#" value="AZ" class="dropdown-item">Arizona</option>
+				  <a href="#" value="AR" class="dropdown-item">Arkansas</option>
+				  <a href="#" value="CA" class="dropdown-item">California</option>
+				  <a href="#" value="CO" class="dropdown-item">Colorado</option>
+				  <a href="#" value="CT" class="dropdown-item">Connecticut</option>
+				  <a href="#" value="DE" class="dropdown-item">Delaware</option>
+				  <a href="#" value="DC" class="dropdown-item">District Of Columbia</option>
+				  <a href="#" value="FL" class="dropdown-item">Florida</option>
+				  <a href="#" value="GA" class="dropdown-item">Georgia</option>
+				  <a href="#" value="HI" class="dropdown-item">Hawaii</option>
+				  <a href="#" value="ID" class="dropdown-item">Idaho</option>
+				  <a href="#" value="IL" class="dropdown-item">Illinois</option>
+				  <a href="#" value="IN" class="dropdown-item">Indiana</option>
+				  <a href="#" value="IA" class="dropdown-item">Iowa</option>
+				  <a href="#" value="KS" class="dropdown-item">Kansas</option>
+				  <a href="#" value="KY" class="dropdown-item">Kentucky</option>
+				  <a href="#" value="LA" class="dropdown-item">Louisiana</option>
+				  <a href="#" value="ME" class="dropdown-item">Maine</option>
+				  <a href="#" value="MD" class="dropdown-item">Maryland</option>
+				  <a href="#" value="MA" class="dropdown-item">Massachusetts</option>
+				  <a href="#" value="MI" class="dropdown-item">Michigan</option>
+				  <a href="#" value="MN" class="dropdown-item">Minnesota</option>
+				  <a href="#" value="MS" class="dropdown-item">Mississippi</option>
+				  <a href="#" value="MO" class="dropdown-item">Missouri</option>
+				  <a href="#" value="MT" class="dropdown-item">Montana</option>
+				  <a href="#" value="NE" class="dropdown-item">Nebraska</option>
+				  <a href="#" value="NV" class="dropdown-item">Nevada</option>
+				  <a href="#" value="NH" class="dropdown-item">New Hampshire</option>
+				  <a href="#" value="NJ" class="dropdown-item">New Jersey</option>
+				  <a href="#" value="NM" class="dropdown-item">New Mexico</option>
+				  <a href="#" value="NY" class="dropdown-item">New York</option>
+				  <a href="#" value="NC" class="dropdown-item">North Carolina</option>
+				  <a href="#" value="ND" class="dropdown-item">North Dakota</option>
+				  <a href="#" value="OH" class="dropdown-item">Ohio</option>
+				  <a href="#" value="OK" class="dropdown-item">Oklahoma</option>
+				  <a href="#" value="OR" class="dropdown-item">Oregon</option>
+				  <a href="#" value="PA" class="dropdown-item">Pennsylvania</option>
+				  <a href="#" value="RI" class="dropdown-item">Rhode Island</option>
+				  <a href="#" value="SC" class="dropdown-item">South Carolina</option>
+				  <a href="#" value="SD" class="dropdown-item">South Dakota</option>
+				  <a href="#" value="TN" class="dropdown-item">Tennessee</option>
+				  <a href="#" value="TX" class="dropdown-item">Texas</option>
+				  <a href="#" value="UT" class="dropdown-item">Utah</option>
+				  <a href="#" value="VT" class="dropdown-item">Vermont</option>
+				  <a href="#" value="VA" class="dropdown-item">Virginia</option>
+				  <a href="#" value="WA" class="dropdown-item">Washington</option>
+				  <a href="#" value="WV" class="dropdown-item">West Virginia</option>
+				  <a href="#" value="WI" class="dropdown-item">Wisconsin</option>
+				  <a href="#" value="WY" class="dropdown-item">Wyoming</option>
+			      <div role="separator" class="dropdown-divider"></div>
+			      <a class="dropdown-item" href="#">Other location</a>
+			    </div>
+			</div>
+		  <!-- Search Key 3 -->
+		  	<div class="btn-group">
+			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cost</button>
+			    <div class="dropdown-menu">
+			      <a class="dropdown-item" href="#">Under $10,000</a>
+			      <a class="dropdown-item" href="#">Under $20,000</a>
+			      <a class="dropdown-item" href="#">Under $40,000</a>
+			      <a class="dropdown-item" href="#">Under $60,000</a>
+			      <div role="separator" class="dropdown-divider"></div>
+			      <a class="dropdown-item" href="#">default</a>
+			    </div>
+			</div>
+		  <!-- Search key 4 -->
+		  	<div class="btn-group">
+			    <button class="btn-lg btn-success btn-cus dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rankings</button>
+			    <div class="dropdown-menu">
+			      <a class="dropdown-item" href="#">Top 50</a>
+			      <a class="dropdown-item" href="#">50-100</a>
+			      <a class="dropdown-item" href="#">100-150</a>
+			      <a class="dropdown-item" href="#">150+</a>
+			      <div role="separator" class="dropdown-divider"></div>
+			      <a class="dropdown-item" href="#">default</a>
+			    </div>
+			</div>
+		  
+		  <!-- Go button -->
+		  <a href="results.html">
+		  <button class="btn-lg btn-warning btn-find" type="button"><i class="fas fa-sort-amount-down"></i> Find Customized School!</button>
+		  </a>
+		</div>
+
+		<!-- Use Advanced Search & GoBack Button -->
+		<div class="text-center"> 
+			<button type="button" class="btn btn-warning center-block text-dark mode-btn" id="adv-btn"
+				onclick="$('#advanced-search').toggle(); $('#name-search').toggle();
+						 $('#adv-btn').toggle(); $('#name-btn').toggle();">
+				Advanced Search
+			</button>
+			<button type="button" class="btn btn-outline-secondary center-block mode-btn" id="name-btn" style="display:none;"
+				onclick="$('#advanced-search').toggle(); $('#name-search').toggle();
+						 $('#adv-btn').toggle(); $('#name-btn').toggle();">
+				Go Back To Name Search
+			</button>
+		</div>
+
+
+		<!-- HeatMap Show -->
+	    <div>
+	    	<h1 style="text-align: center;">Heatmap here</h1>
+	    </div>
+
+
+	    <!-- SLIDES -->
+		<section id="testimonials"> 
+		<div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators" style="padding-bottom:15px;">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+		  
+		    <div class="carousel-inner">
+				<div class="carousel-item active container-fluid" style="background-color:#AE7C7C;">
+					<h2 class="slide-title"> Extremely helpful! </h2>
+					<h3 class="lyrics"> "I found tons of useful information, <br>throughout the application and admission process" </h3>
+					<img id="artist-img" src="../public/images/Dylan.jpg" alt="dylan">
+					<br>	 
+					<em class="art-note">- John Lennon, High school student from New York, Admitted to University of Pennsylvania</em>
+				</div>
+			
+				<div class="carousel-item container-fluid" style="background-color:#9692AF;">			
+					<h2 class="slide-title"> Really reassuring for parents like me </h2>			
+					<h3 class="lyrics"> "Whoo hoo, <br> I can just keep drinking beer now" </h3>
+					<img id="artist-img" src="../public/images/Radiohead.jpg" alt="radiohead">
+					<br>	 
+					<em class="art-note">- Homer Simpson, father of three from Springfield</em>
+				</div>
+			
+				<div class="carousel-item container-fluid" style="background-color:#96C4B2;">
+					<h2 class="slide-title"> I find my motivation and inspiration here, at UnivInfo </h2>
+					<h3 class="lyrics"> "I am so good at study,<br> gonna have a PhD degree" </h3>
+					<img id="artist-img" src="../public/images/Lianne.jpg" alt="lianne">
+					<br>	 
+					<em class="art-note">- Zion Willamson, college student at Duke, admitted to PhD program at Drexel University</em>
+				</div>	  
+			</div>
+			<a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a>
+			<a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
+		</div>	
+	    </section>
+
+		<!-- Footer -->
+		<footer class="footer text-light">
+			<p class="footer-txt">
+				© Copyright 2019 CIS550 Project Group, <br>
+				Kengpian Huang, Jiyun Duan, Jiaying Guo, Tianshuang Fu<br>
+				University of Pennsylvania, Philadelphia, PA 19104, USA.
+			</p>
+		</footer>
+	  
+
+	  <!-- Include these before the end of body tag in every HTML file -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	</body>
+</html>
