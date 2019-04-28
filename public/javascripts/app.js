@@ -35,11 +35,22 @@ app.controller('loginController', function($scope, $http) {
 
 
 // Implement this controller for every HTML body!
-app.controller('TemplateController', function($scope, $http) {  
+app.controller('AdvSearchController', function($scope, $http) {  
   
   $scope.users = {};
   $scope.message="";
   
+  var qstr = "SELECT * FROM (university U JOIN location L) JOIN award_tuition T) JOIN rank R"
+  var str1 = "WHERE U.control = '" + control + "'";
+  var str2 = "WHERE L.state = '" + state + "'";
+  var str3 = "WHERE T.tuition < " + tuition ;
+  var str4 = "WHERE R.ranking < " + ranking + "LIMIT 5;";
+
+  var query = qstr + str1 + str2 + str3 + str4;
+
+
+
+
   var request = $http({
     url: 'INSERT URL HERE',
     method: "GET",

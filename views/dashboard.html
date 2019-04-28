@@ -9,7 +9,7 @@
 	    <link href="https://fonts.googleapis.com/css?family=Acme|Merriweather+Sans:300,400,700" rel="stylesheet">
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	    <script src="../public/javascripts/app.js" type="text/javascript"></script>
+	    <script src="javascripts/app.js" type="text/javascript"></script>
 	    <!-- Custom styles for this template-->
 	    <link href="/stylesheets/common.css" rel="stylesheet">
 	    <link href="/stylesheets/dashboard.css" rel="stylesheet">
@@ -23,7 +23,9 @@
       			<button class="btn btn-success navbar nav-btn">Login</button>
       		</a>
 	    </nav>
-	   
+
+
+	    <section>
 	    <!-- Heading -->
 	    <div class="heading">
 	    	<h1 class="text-light text-center"> Locate your Dream at UnivInfo Today!</h1>
@@ -46,7 +48,6 @@
 				    <option selected>Institute Type:</option>
 				    <option value="1">Public</option>
 				    <option value="2">Private</option>
-				    <option value="3">Community</option>
 			    </select>
 			
 		  		<!-- Search Key 2 -->
@@ -107,10 +108,10 @@
 			
 		    	<!-- Search Key 3 -->
 		  		<select class="adv-select" ng-model="costSelected">
-				    <option selected>Choose Cost:</option>
+				    <option selected>Choose Tuition:</option>
 				    <option value="1">Under $10,000</option>
-				    <option value="2">Under $30,000</option>
-				    <option value="3">Under $50,000</option>
+				    <option value="2">Under $20,000</option>
+				    <option value="3">Under $30,000</option>
 			    </select>
 		  
 		  		<!-- Search key 4 -->
@@ -125,7 +126,7 @@
 
 			<!-- Go button -->
 			<a href="/results">
-	  		<button class="btn-lg btn-warning btn-find input-group-append" type="button"><i class="fas fa-sort-amount-down"></i> Find Customized School!</button>
+	  		<button class="btn-lg btn-warning btn-find input-group-append" type="button"><i class="fas fa-sort-amount-down"></i>  Find Customized School!</button>
 	  		</a>
 		</div>
 
@@ -143,12 +144,17 @@
 				Go Back To Name Search
 			</button>
 		</div>
+		</section>
 
-
+		
 		<!-- HeatMap Show -->
-	    <div>
-	    	<h1 style="text-align: center;">Heatmap here</h1>
+		<section id="HMSection">
+	    <div id="HMDiv">
+	    	<h2 class="text-light heatmap-heading" style="text-align: center;">University Heatmap</h1>
+	    	<img class="heatmap-img" src=/images/heatmap1.png>
+	    	<img class="heatmap-img" src=/images/heatmap2.png>
 	    </div>
+	    </section>
 
 
 	    <!-- SLIDES -->
@@ -164,23 +170,23 @@
 				<div class="carousel-item active container-fluid" style="background-color:#AE7C7C;">
 					<h2 class="slide-title"> Extremely helpful! </h2>
 					<h3 class="lyrics"> "I found tons of useful information, <br>throughout the application and admission process" </h3>
-					<img id="artist-img" src="../public/images/Dylan.jpg" alt="dylan">
+					<img id="artist-img" src="/images/lennon.jpg">
 					<br>	 
 					<em class="art-note">- John Lennon, High school student from New York, Admitted to University of Pennsylvania</em>
 				</div>
 			
 				<div class="carousel-item container-fluid" style="background-color:#9692AF;">			
 					<h2 class="slide-title"> Really reassuring for parents like me </h2>			
-					<h3 class="lyrics"> "Whoo hoo, <br> I can just keep drinking beer now" </h3>
-					<img id="artist-img" src="../public/images/Radiohead.jpg" alt="radiohead">
+					<h3 class="lyrics"> "Whoo-hoo, <br> I can just keep eating donuts and drinking beer." </h3>
+					<img id="artist-img" src="/images/homer.jpg">
 					<br>	 
 					<em class="art-note">- Homer Simpson, father of three from Springfield</em>
 				</div>
 			
 				<div class="carousel-item container-fluid" style="background-color:#96C4B2;">
-					<h2 class="slide-title"> I find my motivation and inspiration here, at UnivInfo </h2>
-					<h3 class="lyrics"> "I am so good at study,<br> gonna have a PhD degree" </h3>
-					<img id="artist-img" src="../public/images/Lianne.jpg" alt="lianne">
+					<h2 class="slide-title"> I find my motivation and inspiration here at UnivInfo </h2>
+					<h3 class="lyrics"> "I am so good at study,<br> I'm gonna have a PhD degree" </h3>
+					<img id="artist-img" src="/images/zion.jpg">
 					<br>	 
 					<em class="art-note">- Zion Willamson, college student at Duke, admitted to PhD program at Drexel University</em>
 				</div>	  
