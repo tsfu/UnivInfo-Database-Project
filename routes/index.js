@@ -1,7 +1,8 @@
 var express = require('express');
-//var mongoose = require('mongoose');
+
 // connect mongoose
 //mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
+
 
 var router = express.Router();
 var path = require('path');
