@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+
+<html ng-app="angularjsNodejsTutorial">
+
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,14 +11,14 @@
 	    <link href="https://fonts.googleapis.com/css?family=Acme|Merriweather+Sans:300,400,700" rel="stylesheet">
 	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	    <script src="../public/javascripts/app.js" type="text/javascript"></script>
+	    <script src="javascripts/app.js" type="text/javascript"></script>
 	    <!-- Custom styles for this template-->
 	    <link href="/stylesheets/common.css" rel="stylesheet">
 	    <link href="/stylesheets/results.css" rel="stylesheet">
 	    <!-- Include your custom css file here if you're making one -->
 	</head>
 
-	<body>
+	<body >
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
     		<a class="navbar-brand navbar-header" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
@@ -32,90 +34,34 @@
 	    </div>
 
 
-		<div class="cards-container">
+		<div class="cards-container" ng-controller="searchController">
 			<ul class="cards-lists">
 				<!-- A card that contains brief college information. -->
-				<li class="card college-card" href="/uprofile">
+				<li ng-repeat = "d in data" class="card college-card" href="/uprofile">
 		          <div class="row no-gutters">
             		<div class="col-auto">
-                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" onclick="window.open('/uprofile');">
+                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" onclick="window.open('/uprofile/?uid='+{{d.unitid}})" >
             		</div>
             		<div class="col">
                 		<div class="card-body">
-                    		<h4 class="card-title">University of Pennsylvania</h4>
+                    		<h4 class="card-title">{{d.chronname}}</h4>
                     		<div class="card-subtitle">
-	                    		<a class="card-text college-website" href="https://upenn.edu">Visit Website</a>
+	                    		<a class="card-text college-website" href={{d.website}}>Visit Website</a>
 	                    		<p class="card-text text-muted college-desc">Description: Private Research University in Philadelphia, PA. Member of Ivy League.</p>
                     		</div>
 	                    	<div class="row card-bullets">
 	                    		<div class="col-sm">
-	                    			<p class="card-text">Annual tuition: $63,221</p>
-	                    			<p class="card-text">Location: Philadelphia, PA</p>
+	                    			
+	                    			<p class="card-text">Location: {{d.city}}</p>
 	                    		</div>
-	                    		<div class="col-sm">
-	                    			<p class="card-text">Top Major: Medicine, Business</p>
-	                    			<p class="card-text">Average Housing Price: $2940/mo</p>
-	                    		</div>
+	                    		
 	                		</div>
 	                	</div>
             		</div>
         		  </div>
 		        </li>
 
-		        <li class="card college-card">
-		          <div class="row no-gutters">
-            		<div class="col-auto">
-                		<img src="https://www.logolynx.com/images/logolynx/ec/ecf2d9b23471be7ec444c873e0128f3f.jpeg" class="img-fluid card-img" alt=""  onclick="window.open('/uprofile');">
-            		</div>
-            		<div class="col">
-                		<div class="card-body">
-                    		<h4 class="card-title">Harvard University</h4>
-                    		<div class="card-subtitle">
-	                    		<a class="card-text college-website" href="https://www.harvard.edu/">Visit Website</a>
-	                    		<p class="card-text text-muted college-desc">Description: Private Research University in Cambridge, Boston, MA. Member of Ivy League.</p>
-                    		</div>
-	                    	<div class="row card-bullets">
-	                    		<div class="col-sm">
-	                    			<p class="card-text">Annual tuition: $63,221</p>
-	                    			<p class="card-text">Location: Boston, MA</p>
-	                    		</div>
-	                    		<div class="col-sm">
-	                    			<p class="card-text">Top Major: Arts, Business</p>
-	                    			<p class="card-text">Average Housing Price: $3500/mo</p>
-	                    		</div>
-	                		</div>
-	                	</div>
-            		</div>
-        		  </div>
-		        </li>
-
-		        <li class="card college-card">
-		          <div class="row no-gutters">
-            		<div class="col-auto">
-                		<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Princetonshieldlarge.png" class="img-fluid card-img" alt=""  onclick="window.open('/uprofile');">
-            		</div>
-            		<div class="col">
-                		<div class="card-body">
-                    		<h4 class="card-title">Princeton University</h4>
-                    		<div class="card-subtitle">
-	                    		<a class="card-text college-website" href="https://www.princeton.edu/">Visit Website</a>
-	                    		<p class="card-text text-muted college-desc">Description: Private Research University in Princeton, NJ. Member of Ivy League.</p>
-                    		</div>
-	                    	<div class="row card-bullets">
-	                    		<div class="col-sm">
-	                    			<p class="card-text">Annual tuition: $63,221</p>
-	                    			<p class="card-text">Location: Princeton, NJ</p>
-	                    		</div>
-	                    		<div class="col-sm">
-	                    			<p class="card-text">Top Major: Physics, BioEngineering</p>
-	                    			<p class="card-text">Average Housing Price: $2900/mo</p>
-	                    		</div>
-	                		</div>
-	                	</div>
-            		</div>
-        		  </div>
-		        </li>
-
+		       
 
 		        <!-- show some more cards here..-->
 		    </ul>

@@ -1,16 +1,16 @@
 var express = require('express');
 var path = require('path');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 // connect mongoose
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index.js');
+var index = require('./routes/index');
 var app = express();
 
-mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
+//mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,97 +1,26 @@
 var express = require('express');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 // connect mongoose
-mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
+//mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
 
 var router = express.Router();
 var path = require('path');
-
-// Connect string to MySQL
-var mysql = require('oracledb');
-
-
-
-
-var connection = oracledb.createConnection({
-  host: 'ENTER HOST HERE',
-  user: 'ENTER USER HERE',
-  password: 'ENTER PSW HERE',
-  database: 'ENTER DB NAME HERE'
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+  host: 'fling.seas.upenn.edu',
+  user: 'kengpian',
+  password: '550project!',
+  database: 'test'
 });
 
 
-
+// Connect string to MySQL
 
 router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'dashboard.html'));
 
-
 });
 
-
-
-
-
-router.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
-});
-
-
-router.get('/recommendations/:movie', function(req, res){
- 
-  var movie = req.params.movie;
-  var query = "select distinct genre from genres g where g.movie_id=? ";
-  connection.query(query, movie, function(err, rows){
-    if(err){
-      console.log(err);
-    }
-    else{
-      console.log(rows.length);
-      var lim = Math.floor(10 / Math.min(rows.length, 10)); 
-      var rem = 10 - lim * rows.length;
-       var result=[];
-       var size = rows.length;
-       
-      for (var i = 0; i < Math.min(rows.length, 10); i++) {
-       if(i == rows.length - 1){
-          lim = rem + lim;
-       }
-       var list=[movie, rows[i].genre, lim];
-       console.log(list);
-        var query2 = "select title, genre from movies m, genres g where m.id=g.movie_id and m.id <> ? and g.genre = ? order by rand() limit ?";
-        connection.query(query2, list, function(err, rows2, fields) {
-               if (err) {
-                 console.log( err );
-               }
-                 for(var x in rows2){
-                  result.push(rows2[x]);
-                 }
-                 //push query output to this variable
-                 if(0 === --size){
-                    res.json(result);
-                 }               
-           });
-      }   
-
-    }
-
-  });
-
-});
-
-router.get('/dashboard/:school', function(req, res){
-  var school = req.params.school;
-  var query = 'SELECT from University';
-  connection.query(query, function(err, rows) {
-    console.log("rows="+rows+"!!!");
-    if (err) console.log(err);
-    else {
-      res.json(rows);
-     
-      }
-  });
-});
-// To add a new page, use the templete below
 
 router.get('/results', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'results.html'));
@@ -100,6 +29,90 @@ router.get('/results', function(req, res) {
 router.get('/uprofile', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'uprofile.html'));
 });
+
+
+router.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+});
+
+
+// oracle version
+/*
+var oracledb = require('oracledb');
+
+
+router.get('/dashboard/:school', function(req, res){
+  var school = req.params.school;
+  console.log("school="+school+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  // var query = "SELECT A1.chronname as name, website, control, yearlevel, LH.tuition as tuition, LH.city as city, avg_housing_rate from (SELECT chronname, unitid, yearlevel, control, website FROM university WHERE chronname = '%"+ school +"%' as A1, awards_tuition AT, (SELECT * from location L , housing H where L.city = H.city and L.statename = H.statename) as LH where A1.unitid = AT.unitid and A1.unitid = LH.unitid;";
+  // connection.query(query, function(err, rows) {
+  //   console.log("rows="+rows+"!!!");
+  //   if (err) console.log(err);
+  //   else {
+  //        res.json(rows);
+     
+  //     }
+  // });
+
+  oracledb.getConnection(
+ {
+  user: 'kengpian',
+  password: 'project550',
+  connectString: 'cis550project.czgstkqm3tfs.us-east-2.rds.amazonaws.com:1521/PENNTR'
+ },
+ 
+ function(err, connection)
+ {
+   if (err) { console.error(err); return; }
+   console.log("Connected!!!!!!!!!!!!!!!!");
+   connection.execute(
+     "select * from (select unitid, chronname, website, control from university where UPPER(chronname) like UPPER('%"+school+"%')) A natural join location L;",
+     function(err, result)
+     {
+       if (err) { console.error(err); return; }
+       console.log(result);
+       res.json(result);
+      
+     });
+ }
+ );
+});
+*/
+
+router.get('/dashboard/:school', function(req, res){
+  res.json({
+        result: 'success'
+      });
+})
+
+router.get('/results/:school', function(req, res){
+  var school = req.params.school;
+  console.log("school="+school+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  var query =  "select * from (select unitid, chronname, website, control from university where UPPER(chronname) like UPPER('%"+school+"%')) A natural join location L;";
+  connection.query(query, function(err, rows) {
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+         res.json(rows);
+     
+      }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// To add a new page, use the templete below
+
+
 
 
 
