@@ -18,7 +18,7 @@
 	    <link href="/stylesheets/dashboard.css" rel="stylesheet">
 	</head>
 
-	<body ng-controller="dashboardController">		
+	<body ng-controller="submitSearchController">		
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
     		<a class="navbar-brand navbar-header" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
@@ -38,7 +38,7 @@
 	    <div class="input-group mb-3" id="name-search">
   			<input type="text" class="form-control" placeholder="Your dream school...Try Harvard University?" 
   			aria-label="Recipient's username" aria-describedby="basic-addon2"  ng-model="school">
-  			<div class="input-group-append" ng-controller="submitSearchController">
+  			<div class="input-group-append">
   				<button ng-click="beginSearch()" class="btn btn-warning" type="button"><i class="fas fa-search"></i> Find School!</button>
   			</div>
 		</div>

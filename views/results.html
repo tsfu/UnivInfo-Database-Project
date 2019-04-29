@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html ng-app="angularjsNodejsTutorial">
-
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +16,10 @@
 	    <!-- Include your custom css file here if you're making one -->
 	</head>
 
-	<body >
+	<body>
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
-    		<a class="navbar-brand navbar-header" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
+    		<a class="navbar-brand navbar-header" href="/" id="logo"><em>UNIVINFO</em></a>
       		<a class="navbar-right ml-auto text-light" href="/login">
       			<button class="btn btn-success navbar nav-btn">Login</button>
       		</a>
@@ -40,7 +38,8 @@
 				<li ng-repeat = "d in data" class="card college-card" href="/uprofile">
 		          <div class="row no-gutters">
             		<div class="col-auto">
-                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" onclick="window.open('/uprofile/?uid='+{{d.unitid}})" >
+                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="">
+                		<!-- img onclick="window.open('/uprofile/?uid='+{{d.unitid}})" -->
             		</div>
             		<div class="col">
                 		<div class="card-body">
