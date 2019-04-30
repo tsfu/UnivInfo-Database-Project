@@ -96,7 +96,7 @@ router.get('/showResults/:school', function(req, res){
   });
 });
 
-<<<<<<< HEAD
+
 router.get('/advResults/:t/:l/:c/:r', function(req, res){
   var type = req.params.t;
   var state = req.params.l;
@@ -121,7 +121,7 @@ router.get('/advResults/:t/:l/:c/:r', function(req, res){
   // });
 });
 
-=======
+
 router.get('/showProfile/:uid', function(req, res){
   var school = req.params.uid;
   
@@ -175,8 +175,6 @@ router.get('/showRecom2/:uid', function(req, res){
   });
 });
 
-
->>>>>>> a56de1de9ca51a5ca16d5371649f9bdd33040ad9
 
 
 // To add a new page, use the templete below
