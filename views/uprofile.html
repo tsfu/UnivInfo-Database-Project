@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='DBProject'>
+<html ng-app="angularjsNodejsTutorial">
 	<head>
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,70 +36,57 @@
 	    	<div class="col-md-7 left-col">
 				<div class="jumbotron jumbotron-fluid" style="border-radius:5px;">
 				  <img class="main-img" src="https://penntoday.upenn.edu/sites/default/files/2018-05/penn_trees.jpg">
-				  <div class="container">
-				    <h3>University of Pennsylvania</h3>
-				    <p class="text-muted">This is a modified jumbotron that occupies the entire horizontal space of its parent. wddb fjkshksdskjh fkls ahfk jash fjkash ajksdhklah jakdhkaD JAdhaJ JAbsjaKHDA hfdjij bsakasnd aksndan</p>
-				    <a href="https://upenn.edu">Website</a>
+				  <div class="container" ng-controller="searchProController">
+				    <h3>{{d.chronname}}</h3>
+				    <p class="text-muted">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The anual tuition of this school is {{d.tuition}} dollars, and the average housing around campus is around{{d.avg_housing_rate}}. For more details about this school, please refer to the shcool website: {{d.website}}</p>
+				    <a href="https://{{d.website}}">Website</a>
 				  </div>
 				</div>
 			</div>
 
 
 	    	<!-- Recommendations -->
-	    	<div class="col-md right-col">
+	    	<div class="col-md right-col" ng-controller="recomController">
 	    		<div class="cards-container">
 					<ul class="cards-lists">
 						<!-- A card that contains brief college information. -->
 						<li class="card college-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-		                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" onclick="window.open('/uprofile');">
+		            			<h5>Tuition</h5>
+		                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro()">
 		            		</div>
 		            		<div class="col">
 		                		<div class="card-body">
-		                    		<h4 class="card-title">University of Pennsylvania</h4>
+		                    		<h4 class="card-title">{{r1.chronname}}</h4>
 		                    		<div class="card-subtitle">
-			                    		<a class="card-text college-website" href="https://upenn.edu">Visit Website</a>
-			                    		<p class="card-text text-muted college-desc">Description: Private Research University in Philadelphia, PA. Member of Ivy League.</p>
+			                    		<a class="card-text college-website" href="https://{{r1.website}}">Visit Website</a>
+			                    		<p class="card-text text-muted college-desc">Description: {{r1.control}} University with tuition {{r1.awards_per_value}}.</p>
 		                    		</div>
 			                	</div>
 		            		</div>
 		        		  </div>
 				        </li>
 
-				        <li class="card college-card">
+				        <li class="card college-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-		                		<img src="https://www.logolynx.com/images/logolynx/ec/ecf2d9b23471be7ec444c873e0128f3f.jpeg" class="img-fluid card-img" alt=""  onclick="window.open('/uprofile');">
+		            			<h5>Location</h5>
+		                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro()">
 		            		</div>
 		            		<div class="col">
 		                		<div class="card-body">
-		                    		<h4 class="card-title">Harvard University</h4>
+		                    		<h4 class="card-title">{{r2.chronname}}</h4>
 		                    		<div class="card-subtitle">
-			                    		<a class="card-text college-website" href="https://www.harvard.edu/">Visit Website</a>
-			                    		<p class="card-text text-muted college-desc">Description: Private Research University in Cambridge, Boston, MA. Member of Ivy League.</p>
+			                    		<a class="card-text college-website" href="https://{{r2.website}}">Visit Website</a>
+			                    		<p class="card-text text-muted college-desc">Description: {{r2.control}} University located in {{r2.city}}.</p>
 		                    		</div>
 			                	</div>
 		            		</div>
 		        		  </div>
 				        </li>
 
-				        <li class="card college-card">
-				          <div class="row no-gutters">
-		            		<div class="col-auto img-div">
-		                		<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Princetonshieldlarge.png" class="img-fluid card-img" alt=""  onclick="window.open('/uprofile');">
-		            		</div>
-		            		<div class="col">
-		                		<div class="card-body">
-		                    		<h4 class="card-title">Princeton University</h4>
-		                    		<div class="card-subtitle">
-			                    		<a class="card-text college-website" href="https://www.princeton.edu/">Visit Website</a>
-			                    		<p class="card-text text-muted college-desc">Description: Private Research University in Princeton, NJ. Member of Ivy League.</p>
-		                    		</div>
-			                	</div>
-		            		</div>
-		        		  </div>
-				        </li>
+				       
 				        <!-- show some more cards here..-->
 				    </ul>
     			</div>
