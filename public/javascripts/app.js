@@ -1,9 +1,10 @@
 "use strict";
 var app = angular.module('angularjsNodejsTutorial', []);
 
+// Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
-  $scope.beginSearch = function() {
-    
+  
+  $scope.beginSearch = function() {   
     console.log("school input is: " + $scope.school);
     var request = $http.get('http://localhost:8081/showResults/' + $scope.school);   
     
@@ -12,12 +13,42 @@ app.controller('submitSearchController', function($scope, $http, $window) {
     window.location.href = "http://localhost:8081/results";      
     });
   
-    request.error(function(data, status){
+    request.error(function(response, status){
       console.log('err', data, status);
     });
   }
+
+  $scope.advSearch = function(){
+    console.log("TYPE --" + $scope.typeSelected);
+    console.log("LOCATION --" + $scope.stateSelected);
+    console.log("COST --" + $scope.costSelected);
+    console.log("RANKING --" + $scope.rankingSelected);
+
+    var advRequest = $http({
+      url: '/advResults/',
+      params: {t: $scope.typeSelected, l: $scope.stateSelected, c:$scope.costSelected , r:$scope.rankingSelected}, 
+      method: "GET",
+      data: {}
+    });
+    // var advRequest = $http.get('http://localhost:8081/advResults/' + $scope.typeSelected + '/' + $scope.stateSelected + '/' + 
+    //   $scope.costSelected + '/' + $scope.rankingSelected);
+    
+    advRequest.success(function(response){
+      console.log("REQUEST SENT SUCCESS!!!")
+    //$window.localStorage.setItem("advRows", JSON.stringify(response));
+    //window.location.href = "http://localhost:8081/results";      
+    });
+  
+    advRequest.error(function(response, status){
+      console.log('err', response, status);
+    });
+  }
+
 });
 
+
+
+// R
 app.controller('searchController', function($scope, $http, $window) {
     $scope.shared = JSON.parse($window.localStorage.getItem("rows"));
 
@@ -50,10 +81,8 @@ app.controller('profileController', function($scope, $http) {
   request.error(function(data, status){
     console.log('err', data, status);
   });
-  }
-  
+  } 
 });
-
 
 
 

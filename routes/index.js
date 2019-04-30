@@ -100,6 +100,30 @@ router.get('/showResults/:school', function(req, res){
   });
 });
 
+router.get('/advResults/:t/:l/:c/:r', function(req, res){
+  var type = req.params.t;
+  var state = req.params.l;
+  var cost = req.params.c;
+  var ranking = req.params.r;
+  console.log("filter set="+ type + location + cost + ranking + "!!!!!!!!!");
+
+  // var str1 = "SELECT * FROM ( SELECT * FROM university "
+  // var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + type + ")"
+  // var str3 = "NATURAL JOIN (SELECT * FROM location WHERE state = " + state + ")"
+  // var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + cost + ")"
+  // var str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + ranking + ")"
+  // var str6 = ") WHERE ROWNUM < 5;"
+
+  // var query = str1 + str2 + str3 + str4 + str5 + str6;
+  // connection.query(query, function(err, rows) {
+  //   console.log("picked="+rows+"!!!");
+  //   if (err) console.log(err);
+  //   else {
+  //     res.json(rows);
+  //     }
+  // });
+});
+
 
 
 // To add a new page, use the templete below

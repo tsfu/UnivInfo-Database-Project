@@ -8,7 +8,7 @@ str3 = "NATURAL JOIN (SELECT * FROM location WHERE state = " + stateSelected + "
 
 str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + costSelected + ")"
 
-str5 = "NATURAL JOIN (SELECT * FROM rank WHERE ranking < " + rankingSelected + ")"
+str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + rankingSelected + ")"
 
 str6 = ") WHERE ROWNUM < 5;"
 
