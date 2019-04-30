@@ -3,7 +3,6 @@ var express = require('express');
 // connect mongoose
 //mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
 
-
 var router = express.Router();
 var path = require('path');
 var mysql = require('mysql');
@@ -97,28 +96,46 @@ router.get('/showResults/:school', function(req, res){
 });
 
 
-router.get('/advResults/:t/:l/:c/:r', function(req, res){
-  var type = req.params.t;
-  var state = req.params.l;
-  var cost = req.params.c;
-  var ranking = req.params.r;
-  console.log("filter set="+ type + location + cost + ranking + "!!!!!!!!!");
+router.get('/advResults', function(req, res){
+  var type = req.query.t;
+  var state = req.query.l;
+  var cost = req.query.c;
+  var ranking = req.query.r;
+  console.log("filter set = "+ type + state + cost + ranking + "!!!!!!!!!");
 
-  // var str1 = "SELECT * FROM ( SELECT * FROM university "
-  // var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + type + ")"
-  // var str3 = "NATURAL JOIN (SELECT * FROM location WHERE state = " + state + ")"
-  // var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + cost + ")"
-  // var str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + ranking + ")"
-  // var str6 = ") WHERE ROWNUM < 5;"
+  // quert parts
+  var str1 = "SELECT * FROM ( SELECT * FROM university "
+  var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + type + ")AS F1 "
+  var str3 = "NATURAL JOIN (SELECT * FROM location WHERE statename = '" + state + "')AS F2 "
+  var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + cost + ")AS F3 "
+  var str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + ranking + ")AS F4 "
+  var str6 = ")AS F LIMIT 5;"
 
-  // var query = str1 + str2 + str3 + str4 + str5 + str6;
-  // connection.query(query, function(err, rows) {
-  //   console.log("picked="+rows+"!!!");
-  //   if (err) console.log(err);
-  //   else {
-  //     res.json(rows);
-  //     }
-  // });
+  // if user leave some filter as blank:
+    if(type == null){
+    str2 = "";
+  }
+    if(state == null){
+    str3 = "";
+  }
+    if(cost == null){
+    str4 = "";
+  }
+    if(ranking == null){
+    str5 = "";
+  }
+
+  // final query 
+  var query = str1 + str2 + str3 + str4 + str5 + str6;
+  
+  connection.query(query, function(err, rows) {
+    console.log("!!!!!Picked Results!!!!!! = " + rows);
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      }
+  });
+
 });
 
 

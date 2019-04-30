@@ -24,19 +24,18 @@ app.controller('submitSearchController', function($scope, $http, $window) {
     console.log("COST --" + $scope.costSelected);
     console.log("RANKING --" + $scope.rankingSelected);
 
-    var advRequest = $http({
-      url: '/advResults/',
-      params: {t: $scope.typeSelected, l: $scope.stateSelected, c:$scope.costSelected , r:$scope.rankingSelected}, 
-      method: "GET",
-      data: {}
+    var advRequest = $http.get('/advResults', {params:{
+        't': $scope.typeSelected, 
+        'l': $scope.stateSelected, 
+        'c': $scope.costSelected , 
+        'r': $scope.rankingSelected
+      }
     });
-    // var advRequest = $http.get('http://localhost:8081/advResults/' + $scope.typeSelected + '/' + $scope.stateSelected + '/' + 
-    //   $scope.costSelected + '/' + $scope.rankingSelected);
     
     advRequest.success(function(response){
-      console.log("REQUEST SENT SUCCESS!!!")
-    //$window.localStorage.setItem("advRows", JSON.stringify(response));
-    //window.location.href = "http://localhost:8081/results";      
+      console.log("REQUEST PROCESSED SUCCESSFULLY!!!")
+      $window.localStorage.setItem("rows", JSON.stringify(response));
+      window.location.href = "http://localhost:8081/results";      
     });
   
     advRequest.error(function(response, status){
@@ -53,13 +52,10 @@ app.controller('searchController', function($scope, $http, $window) {
     console.log("Service: " + $scope.shared);
     $scope.data = $scope.shared;
     console.log($scope.data);
-    console.log("help!");
 
     $scope.submit = function(x){
     console.log("function x = "+x);
    var request = $http.get('http://localhost:8081/showProfile/'+x);
-
-
   
     request.success(function(response){
        $window.localStorage.setItem("uprofile", JSON.stringify(response));
@@ -75,10 +71,7 @@ app.controller('searchController', function($scope, $http, $window) {
 
      request2.success(function(response){
       console.log("help recom 1!");
-       $window.localStorage.setItem("recom1", JSON.stringify(response));
-
-       
-        
+       $window.localStorage.setItem("recom1", JSON.stringify(response));         
     });
   
     request2.error(function(data, status){
