@@ -81,11 +81,7 @@ router.get('/login', function(req, res) {
 // });
 
 
-router.get('/dashboard/:school', function(req, res){
-  res.json({
-        result: 'success'
-      });
-})
+
 
 router.get('/showResults/:school', function(req, res){
   var school = req.params.school;
@@ -100,6 +96,7 @@ router.get('/showResults/:school', function(req, res){
   });
 });
 
+<<<<<<< HEAD
 router.get('/advResults/:t/:l/:c/:r', function(req, res){
   var type = req.params.t;
   var state = req.params.l;
@@ -124,6 +121,62 @@ router.get('/advResults/:t/:l/:c/:r', function(req, res){
   // });
 });
 
+=======
+router.get('/showProfile/:uid', function(req, res){
+  var school = req.params.uid;
+  
+  var query =  "SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location NATURAL JOIN test.housing NATURAL JOIN test.award_tuition ;";
+  connection.query(query, function(err, rows) {
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      }
+  });
+});
+
+router.get('/showRecom1/:uid', function(req, res){
+  var uid = req.params.uid;
+  
+  var query =  "SELECT * FROM(SELECT * FROM test.university u NATURAL JOIN test.award_tuition a WHERE a.tuition between 0.98*37362 AND 1.02*37362 AND u.unitid != "+uid+") tmp LIMIT 1;";
+  connection.query(query, function(err, rows) {
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      }
+  });
+});
+
+
+router.get('/showRecom2/:uid', function(req, res){
+  var uid = req.params.uid;
+  console.log(uid+"!!");
+  var city="";
+  var state = "";
+
+  var query1 = "SELECT * FROM test.university natural join test.location where unitid="+uid+";";
+  connection.query1(query1, function(err, rows){
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+        city=rows[0].city;
+        state=rows[0].statename;
+      }
+  });
+
+  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "+city+" AND l.statename = "+state+" AND u.unitid != "+uid+") tmp;";
+  connection.query(query2, function(err, rows) {
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      }
+  });
+});
+
+
+>>>>>>> a56de1de9ca51a5ca16d5371649f9bdd33040ad9
 
 
 // To add a new page, use the templete below

@@ -38,14 +38,14 @@
 				<li ng-repeat = "d in data" class="card college-card" href="/uprofile">
 		          <div class="row no-gutters">
             		<div class="col-auto">
-                		<img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="">
+                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="submit(d.unitid)" ></a>
                 		<!-- img onclick="window.open('/uprofile/?uid='+{{d.unitid}})" -->
             		</div>
             		<div class="col">
                 		<div class="card-body">
                     		<h4 class="card-title">{{d.chronname}}</h4>
                     		<div class="card-subtitle">
-	                    		<a class="card-text college-website" href={{d.website}}>Visit Website</a>
+	                    		<a class="card-text college-website" href="https://{{d.website}}">Visit Website</a>
 	                    		<p class="card-text text-muted college-desc">Description: Private Research University in Philadelphia, PA. Member of Ivy League.</p>
                     		</div>
 	                    	<div class="row card-bullets">
