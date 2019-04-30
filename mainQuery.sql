@@ -1,17 +1,11 @@
-str1_1 = "SELECT * FROM ("
-
-str1_2 = "SELECT * FROM university"
-
-str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + typeSelected + ")"
-
-str3 = "NATURAL JOIN (SELECT * FROM location WHERE state = " + stateSelected + ")"
-
-str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + costSelected + ")"
-
-str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + rankingSelected + ")"
-
-str6 = ") WHERE ROWNUM < 5;"
-
+ # advanced search queries
+  -- var str1 = "SELECT * FROM ( SELECT * FROM university "
+  -- var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + type + ")AS F1 "
+  -- var str3 = "NATURAL JOIN (SELECT * FROM location WHERE statename = '" + state + "')AS F2 "
+  -- var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + cost + ")AS F3 "
+  -- var str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + ranking + ")AS F4 "
+  -- var str6 = ")AS F LIMIT 5;"
+# advanced part end
 
 
 #Best match
