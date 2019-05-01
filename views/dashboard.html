@@ -51,9 +51,9 @@
 			<div class="input-group select-group">
 		  		<!-- Search key 1 -->
 		  		<select class="adv-select" ng-model="typeSelected">
-				    <option selected>Institute Type:</option>
+				    <option value="" selected="selected">Institute Type:</option>
 				    <option value="1">Public</option>
-				    <option value="2">Private</option>
+				    <option value="0">Private</option>
 			    </select>
 			
 		  		<!-- Search Key 2 -->
@@ -114,26 +114,28 @@
 			
 		    	<!-- Search Key 3 -->
 		  		<select class="adv-select" ng-model="costSelected">
-				    <option selected>Choose Tuition:</option>
-				    <option value="1">Under $10,000</option>
-				    <option value="2">Under $20,000</option>
-				    <option value="3">Under $30,000</option>
+				    <option value="" selected="selected">Choose Tuition:</option>
+				    <option value="10000">Under $10,000</option>
+				    <option value="20000">Under $20,000</option>
+				    <option value="30000">Under $30,000</option>
 			    </select>
 		  
 		  		<!-- Search key 4 -->
 		  		<select class="adv-select" ng-model="rankingSelected">
-				    <option selected>Choose Ranking:</option>
-				    <option value="3">Top 10</option>
-				    <option value="1">Top 50</option>
-				    <option value="2">Top 100</option>
-				    <option value="3">Top 200</option>
+				    <option value="" selected="selected">Choose Ranking:</option>
+				    <option value="10">Top 10</option>
+				    <option value="50">Top 50</option>
+				    <option value="100">Top 100</option>
+				    <option value="200">Top 200</option>
 			    </select>
 			</div>
 
 			<!-- Go button -->
-			<a href="/results">
-	  		<button class="btn-lg btn-warning btn-find input-group-append" type="button"><i class="fas fa-sort-amount-down"></i>  Find Customized School!</button>
-	  		</a>
+			
+  			<button class="btn-lg btn-warning btn-find input-group-append" type="button" ng-click="advSearch()">
+  				<i class="fas fa-sort-amount-down"></i>  Find Customized School!
+  			</button>
+	  		
 		</div>
 
 
