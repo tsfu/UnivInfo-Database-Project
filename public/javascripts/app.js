@@ -36,6 +36,17 @@ app.controller('searchController', function($scope, $http, $window) {
     request.success(function(response){
        $window.localStorage.setItem("uprofile", JSON.stringify(response));
        window.location.href = "http://localhost:8081/uprofile";
+        var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
+
+        request2.success(function(response){
+        console.log("help recom 1!");
+        $window.localStorage.setItem("recom1", JSON.stringify(response));
+
+       });
+  
+        request2.error(function(data, status){
+          console.log('err', data, status);
+        });
         
     });
   
@@ -43,19 +54,7 @@ app.controller('searchController', function($scope, $http, $window) {
       console.log('err', data, status);
     });
 
-    var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
-
-     request2.success(function(response){
-      console.log("help recom 1!");
-       $window.localStorage.setItem("recom1", JSON.stringify(response));
-
-       
-        
-    });
-  
-    request2.error(function(data, status){
-      console.log('err', data, status);
-    });
+   
 
     // var request3 = $http.get('http://localhost:8081/showRecom2/'+x);
 
