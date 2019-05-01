@@ -172,17 +172,19 @@ router.get('/showRecom2/:uid', function(req, res){
   var city="";
   var state = "";
 
-  var query1 = "SELECT * FROM test.university natural join test.location where unitid="+uid+";";
-  connection.query1(query1, function(err, rows){
+  var query1 = 'SELECT * FROM test.university natural join test.location where unitid="'+uid+'"';
+  connection.query(query1, function(err, rows){
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
     else {
         city=rows[0].city;
+        console.log(city);
         state=rows[0].statename;
+        console.log(state);
       }
   });
 
-  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "+city+" AND l.statename = "+state+" AND u.unitid != "+uid+") tmp;";
+  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = '"+city+"' AND l.statename = '"+state+"' AND u.unitid != '"+uid+"') tmp;";
   connection.query(query2, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -190,6 +192,34 @@ router.get('/showRecom2/:uid', function(req, res){
       res.json(rows);
       }
   });
+});
+
+router.get('/showRecom3/:uid', function(req, res){
+  var uid = req.params.uid;
+  var rank=0;
+
+  var query1 = "SELECT * FROM test.university natural join test.rank where unitid="+uid+";";
+  connection.query(query1, function(err, rows){
+    if (err) console.log(err);
+    else {
+        rank=Number(rows[0].Rank);
+        console.log(rank+"!!!!!!!!!!!!!!!");
+      }
+  });
+
+  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.rank r WHERE r.Rank BETWEEN" + (rank-5) + "AND" + (rank+5) + "AND u.unitid !="+ uid + ")tmp;";
+  connection.query(query2, function(err, rows) {
+    console.log("rows="+rows+"!!!");
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      }
+  });
+
+
+
+
+
 });
 
 

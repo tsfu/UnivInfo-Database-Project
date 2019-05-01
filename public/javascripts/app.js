@@ -59,15 +59,7 @@ app.controller('searchController', function($scope, $http, $window) {
   
     request.success(function(response){
        $window.localStorage.setItem("uprofile", JSON.stringify(response));
-       window.location.href = "http://localhost:8081/uprofile";
-        
-    });
-  
-    request.error(function(data, status){
-      console.log('err', data, status);
-    });
-
-    var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
+       var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
 
      request2.success(function(response){
       console.log("help recom 1!");
@@ -77,6 +69,36 @@ app.controller('searchController', function($scope, $http, $window) {
     request2.error(function(data, status){
       console.log('err', data, status);
     });
+ var request3 = $http.get('http://localhost:8081/showRecom2/'+x);
+    request3.success(function(response){
+      console.log("help recom 2!");
+       $window.localStorage.setItem("recom2", JSON.stringify(response));         
+    });
+  
+    request3.error(function(data, status){
+      console.log('err', data, status);
+    });
+
+ var request4 = $http.get('http://localhost:8081/showRecom3/'+x);
+    request4.success(function(response){
+      console.log("help recom 3!");
+       $window.localStorage.setItem("recom3", JSON.stringify(response));         
+    });
+  
+    request4.error(function(data, status){
+      console.log('err', data, status);
+    });
+
+
+       window.location.href = "http://localhost:8081/uprofile";
+        
+    });
+  
+    request.error(function(data, status){
+      console.log('err', data, status);
+    });
+
+    
 
     // var request3 = $http.get('http://localhost:8081/showRecom2/'+x);
 
@@ -133,12 +155,19 @@ app.controller('searchProController', function($scope, $http, $window) {
 
 app.controller("recomController",function($scope, $http, $window){
     var i = JSON.parse($window.localStorage.getItem("recom1"));
+    if(i!=null){
     $scope.r1 = i[0];
-    console.log("Recom1: " + $scope.r1);
+    console.log("Recom1: " + $scope.r1);}
 
     var j = JSON.parse($window.localStorage.getItem("recom2"));
+    if(j!=null){
     $scope.r2 = j[0];
-    console.log("Recom2: " + $scope.r2);
+    console.log("Recom2: " + $scope.r2);}
+
+     var k = JSON.parse($window.localStorage.getItem("recom3"));
+    if(k!=null){
+    $scope.r3 = k[0];
+    console.log("Recom3: " + $scope.r3);}
 
 });
 
