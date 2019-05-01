@@ -75,11 +75,18 @@ app.controller('searchController', function($scope, $http, $window) {
 
     var request3 = $http.get('http://localhost:8081/showRecom2/'+x);
     request3.success(function(response){
+      var city = response[0].city;
+      var state = response[0].statename;
       console.log("help recom 2!");
-       var request22 = $http.get('http://localhost:8081/showRecom22/'+x);
+       var request22 = $http.get('/showRecom22', {params:{
+        'city': city, 
+        'state': state,
+        'uid': x
+           }
+        });
         request22.success(function(rows){
-        console.log("help recom 22!");
-         $window.localStorage.setItem("recom2", JSON.stringify(rows));         
+            console.log("help recom 22!");
+            $window.localStorage.setItem("recom2", JSON.stringify(rows));         
       });
   
         request22.error(function(data, status){

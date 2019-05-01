@@ -13,9 +13,6 @@ var connection = mysql.createConnection({
   database: 'test'
 });
 
-var city="";
-var state = "";
-var i = 3;
 
 // Connect string to MySQL
 
@@ -172,9 +169,9 @@ router.get('/showRecom1/:uid', function(req, res){
 router.get('/showRecom2/:uid', function(req, res){
   var uid = req.params.uid;
   console.log(uid+"!!");
-  
+
  
-    var query1 = 'SELECT * FROM test.university natural join test.location where unitid="'+uid+'"';
+    var query1 = 'SELECT * FROM test.university natural join test.location where unitid='+uid+';';
     connection.query(query1, function(err, rows, city, state){
       console.log("Recom2 rows="+rows+"!!!");
       if (err) console.log(err);
@@ -189,16 +186,18 @@ router.get('/showRecom2/:uid', function(req, res){
   
 });
 
-router.get('/showRecom22/:uid', function(req, res){
+router.get('/showRecom22', function(req, res){
 
-
-   console.log("state="+state);
+    var uid = req.query.uid;
+    var city = req.query.city;
+    var state = req.query.state;
+    console.log("city: "+city+" state:"+state + " uid: "+ uid);
     var query2 =  'SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "'+city+'" AND l.statename = "'+state+'" AND u.unitid != '+ uid +') tmp;';
     connection.query(query2, function(err, rows) {
-      console.log("Recom22 rows="+rows+"!!!");
+      console.log(rows);
       if (err) console.log(err);
       else {
-        res.json(rows);
+          res.json(rows);
         }
     });
 });
