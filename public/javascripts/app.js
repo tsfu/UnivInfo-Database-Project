@@ -82,7 +82,7 @@ app.controller('searchController', function($scope, $http, $window) {
         $scope.imgs.push(imgSrc);
         console.log("!!!THIS ROW HAS GOT AN IMG!!!");
       });
-       
+      
       requestImg.error(function(err) {
         console.log("error: ", err);
         $scope.imgs.push(altImgSrc);
@@ -117,7 +117,15 @@ app.controller('searchController', function($scope, $http, $window) {
         
         request2.success(function(response){
           console.log("help recom 2!");
-          var request22 = $http.get('http://localhost:8081/showRecom22/'+x);
+          var city = response[0].city;
+          var state = response[0].statename;
+          
+          var request22 = $http.get('/showRecom22', {params:{
+            'city': city, 
+            'state': state,
+            'uid': x
+               }
+          });
           
           request22.success(function(rows){
             console.log("help recom 22!");
