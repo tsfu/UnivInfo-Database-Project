@@ -38,7 +38,7 @@
 				<li ng-repeat = "d in data" class="card college-card" href="/uprofile">
 		          <div class="row no-gutters">
             		<div class="col-auto">
-                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="submit(d.unitid)" ></a>
+                		<a href=""><img ng-src={{imgs[$index]}} alt="BingImageSearch" class="img-fluid card-img" ng-click="submit(d.unitid)"></a>
                 		<!-- img onclick="window.open('/uprofile/?uid='+{{d.unitid}})" -->
             		</div>
             		<div class="col">

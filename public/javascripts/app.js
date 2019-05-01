@@ -4,6 +4,7 @@ var app = angular.module('angularjsNodejsTutorial', []);
 // Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
   
+  // name search
   $scope.beginSearch = function() {   
     console.log("school input is: " + $scope.school);
     var request = $http.get('http://localhost:8081/showResults/' + $scope.school);   
@@ -18,6 +19,7 @@ app.controller('submitSearchController', function($scope, $http, $window) {
     });
   }
 
+  // advanced filter search
   $scope.advSearch = function(){
     console.log("TYPE --" + $scope.typeSelected);
     console.log("LOCATION --" + $scope.stateSelected);
@@ -47,68 +49,77 @@ app.controller('submitSearchController', function($scope, $http, $window) {
 
 
 app.controller('searchController', function($scope, $http, $window) {
+    // load serach result JSON from localStorage, show results cards
     $scope.shared = JSON.parse($window.localStorage.getItem("rows"));
-
-    console.log("Service: " + $scope.shared);
     $scope.data = $scope.shared;
     console.log($scope.data);
 
-    $scope.submit = function(x){
-    console.log("function x = "+x);
-   var request = $http.get('http://localhost:8081/showProfile/'+x);
-  
-    request.success(function(response){
-       $window.localStorage.setItem("uprofile", JSON.stringify(response));
-       window.location.href = "http://localhost:8081/uprofile";
-        
-    });
-  
-    request.error(function(data, status){
-      console.log('err', data, status);
-    });
+    // extract scholl names as search keywords:
+    var names = [];
+    for(var i = 0; i<$scope.data.length; i++){
+      names.push($scope.data[i].chronname)
+    };
 
-    var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
+    // load images:================ Bing Image Search API =========================
+    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var altImgSrc = "https://psmag.com/.image/t_share/MTI4NzE4MDAzMzE4NTk0MDE0/shutterstock_35935870jpg.jpg";
+    $scope.imgs = [];
+    
+    for(var i = 0; i<$scope.data.length; i++){
+      
+      // Delay for API access limit..1 request per second..
+      setTimeout(function(){console.log("HAHA+1S")}, 1000)
 
-     request2.success(function(response){
-      console.log("help recom 1!");
-       $window.localStorage.setItem("recom1", JSON.stringify(response));         
-    });
-  
-    request2.error(function(data, status){
-      console.log('err', data, status);
-    });
+      var requestImg = $http({ 
+        headers: {'Ocp-Apim-Subscription-Key': apiKey,},
+        url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="' + names[i] + '"campus',
+        method: "GET",
+        data: {} 
+      });
 
-    // var request3 = $http.get('http://localhost:8081/showRecom2/'+x);
-
-    //  request3.success(function(response){
-    //   console.log("help recom 2!");
-    //    $window.localStorage.setItem("recom2", JSON.stringify(response));
-
+      requestImg.success(function(response, imgSrc, imgSrcs){
+        imgSrc = response.value[0].contentUrl;
+        $scope.imgs.push(imgSrc);
+        console.log("!!!THIS ROW HAS GOT AN IMG!!!");
+      });
        
-        
-    // });
+      requestImg.error(function(err) {
+        console.log("error: ", err);
+        $scope.imgs.push(altImgSrc);
+      });
+    }
+    //$scope.imgs.sort();
+    console.log($scope.imgs);
+    // ========================= image loading part END ===================================================================
+
+
+    // click on logo to profile page
+    $scope.submit = function(x){
+      console.log("function x = "+x);
+      var request = $http.get('http://localhost:8081/showProfile/'+x);
   
-    // request3.error(function(data, status){
-    //   console.log('err', data, status);
-    // });
+      request.success(function(response){
+        $window.localStorage.setItem("uprofile", JSON.stringify(response));
+        window.location.href = "http://localhost:8081/uprofile";        
+      });
+  
+      request.error(function(data, status){
+        console.log('err', data, status);
+      });
 
+      var request2 = $http.get('http://localhost:8081/showRecom1/'+x);
 
-
-  }
-
-
-
-  // var request = $http.get('/showResults/' + $scope.school);
-  // request.success(function(response){
-  //   console.log("SCOPE SENT!!!!!!!!!!!!!!!!!");
-  //   console.log(response + "!!!!!!!!!!!!DATA GOTTTT!!!!");
-  //   $scope.data = response;
-  // });
-
-  // request.error(function(data, status){
-  //   console.log('err', data, status);
-  // });
+      request2.success(function(response){
+        console.log("help recom 1!");
+        $window.localStorage.setItem("recom1", JSON.stringify(response));         
+      });
+  
+      request2.error(function(data, status){
+        console.log('err', data, status);
+      });
+    }
 });
+
 
 
 app.controller('searchProController', function($scope, $http, $window) {
