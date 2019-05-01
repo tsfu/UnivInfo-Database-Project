@@ -13,6 +13,9 @@ var connection = mysql.createConnection({
   database: 'test'
 });
 
+var city="";
+var state = "";
+var i = 3;
 
 // Connect string to MySQL
 
@@ -169,20 +172,52 @@ router.get('/showRecom1/:uid', function(req, res){
 router.get('/showRecom2/:uid', function(req, res){
   var uid = req.params.uid;
   console.log(uid+"!!");
-  var city="";
-  var state = "";
+  
+ 
+    var query1 = 'SELECT * FROM test.university natural join test.location where unitid="'+uid+'"';
+    connection.query(query1, function(err, rows, city, state){
+      console.log("Recom2 rows="+rows+"!!!");
+      if (err) console.log(err);
+      else {
+        state  = rows[0].statename;
+        city = rows[0].city;
+        res.json(rows);
+        }
+    });
+  
+  
+  
+});
 
-  var query1 = "SELECT * FROM test.university natural join test.location where unitid="+uid+";";
-  connection.query1(query1, function(err, rows){
-    console.log("rows="+rows+"!!!");
+router.get('/showRecom22/:uid', function(req, res){
+
+
+   console.log("state="+state);
+    var query2 =  'SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "'+city+'" AND l.statename = "'+state+'" AND u.unitid != '+ uid +') tmp;';
+    connection.query(query2, function(err, rows) {
+      console.log("Recom22 rows="+rows+"!!!");
+      if (err) console.log(err);
+      else {
+        res.json(rows);
+        }
+    });
+});
+
+/*router.get('/showRecom3/:uid', function(req, res){
+  var uid = req.params.uid;
+  var rank=0;
+
+  var query1 = "SELECT * FROM test.university natural join test.rank where unitid="+uid+";";
+  connection.query(query1, function(err, rows){
     if (err) console.log(err);
     else {
-        city=rows[0].city;
-        state=rows[0].statename;
+        console.log("Recom3 "+rows[0]);
+        rank=Number(rows[0].Rank);
+        console.log(rank+"!!!!!!!!!!!!!!!");
       }
   });
 
-  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "+city+" AND l.statename = "+state+" AND u.unitid != "+uid+") tmp;";
+  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.rank r WHERE r.Rank BETWEEN" + (rank-5) + "AND" + (rank+5) + "AND u.unitid !="+ uid + ")tmp;";
   connection.query(query2, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -190,8 +225,9 @@ router.get('/showRecom2/:uid', function(req, res){
       res.json(rows);
       }
   });
-});
 
+});
+*/
 
 
 // To add a new page, use the templete below
