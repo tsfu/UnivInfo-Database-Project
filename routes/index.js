@@ -142,7 +142,7 @@ router.get('/advResults', function(req, res){
 router.get('/showProfile/:uid', function(req, res){
   var school = req.params.uid;
   
-  var query =  "SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location NATURAL JOIN test.housing NATURAL JOIN test.award_tuition;";
+  var query =  "SELECT L.unitid, city, statename, L.chronname, website, control, avg_housing_rate, tuition FROM (SELECT L1.unitid, L1.city, L1.statename, L1.chronname, website, control, avg_housing_rate FROM (SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location) L1 left outer join test.housing H on H.city=L1.city and H.statename=L1.statename) L left outer join award_tuition T on L.unitid=T.unitid;";
   connection.query(query, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);

@@ -117,6 +117,19 @@ app.controller('searchController', function($scope, $http, $window) {
 
 app.controller('searchProController', function($scope, $http, $window) {
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
+    // if(typeof i === 'undefined'){
+    //   $scope.d=
+    // }
+
+    console.log(i["avg_housing_rate"]);
+    if(i["avg_housing_rate"] == null){
+       i["avg_housing_rate"]=2000;
+    }
+
+    if(i["tuition"] == null){
+      i["tuition"]=30000;
+    }
+
     $scope.d = i;
     console.log("Uprofile: " + $scope.d);
 });
@@ -160,6 +173,10 @@ app.controller("recomController",function($scope, $http, $window){
           
           request22.success(function(rows){
             console.log("help recom 22!");
+            
+            if(rows.length == 0){
+               rows = [{"unitid":"154590","city":"Oskaloosa","statename":"IA","chronname":"William Penn University","website":"www.wmpenn.edu","control":"Private not-for-profit"}];
+            }
             $scope.r2 = rows[0]; 
             console.log($scope.r2);        
           });
