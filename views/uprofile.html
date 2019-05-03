@@ -33,16 +33,15 @@
 
 	    <div class="row no-gutters">
 	    	<!-- Profile School Description -->
-	    	<div class="col-md-7 left-col">
+	    	<div class="col-md-7 left-col"  ng-controller="searchProController">
 				<div class="jumbotron jumbotron-fluid" style="border-radius:5px;">
-				  <img class="main-img" src="https://penntoday.upenn.edu/sites/default/files/2018-05/penn_trees.jpg">
-				  <div class="container" ng-controller="searchProController">
-				    <h3>{{d.chronname}}</h3>
-				    <p class="text-muted">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The annual tuition of this school is ${{d.tuition}}, and the average housing around campus is around ${{d.avg_housing_rate}} per year. For more details about this school, please refer to the shcool website: <a href="https://{{d.website}}">{{d.website}}</a></p>				    
+				  <img class="main-img" ng-src={{imgSrc}}>
+				  <div class="container">
+				    <h3 style="font-weight: bold;">{{d.chronname}}</h3>
+				    <p class="profile-desc">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The annual tuition of this school is ${{d.tuition}}, and the average housing around campus is around ${{d.avg_housing_rate}} per year. For more details about this school, please refer to the shcool website: <a href="https://{{d.website}}">{{d.website}}</a></p>				    
 				  </div>
 				</div>
 			</div>
-
 
 	    	<!-- Similar Recommendations -->
 	    	<div class="col-md right-col" ng-controller="recomController">
@@ -53,10 +52,8 @@
 						<li class="card rec-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-
 		            			<h5 class="rec-genre">Tuition</h5>
-
-		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r1.unitid)"></a>
+		                		<a href=""><img ng-src={{imgSrc1}} class="img-fluid card-img" alt="" ng-click="recomPro(r1.unitid)"></a>
 		            		</div>
 		            		<div class="col">
 		                		<div class="card-body">
@@ -73,10 +70,8 @@
 				        <li class="card rec-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-
 		            			<h5 class="rec-genre">Location</h5>
-
-		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r2.unitid)"></a>
+		                		<a href=""><img ng-src={{imgSrc2}} class="img-fluid card-img" alt="" ng-click="recomPro(r2.unitid)"></a>
 		            		</div>
 		            		<div class="col">
 		                		<div class="card-body">
@@ -94,8 +89,7 @@
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
 		            			<h5 class="rec-genre">Ranking</h5>
-
-		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r3.unitid)"></a>
+		                		<a href=""><img ng-src={{imgSrc3}} class="img-fluid card-img" alt="" ng-click="recomPro(r3.unitid)"></a>
 		            		</div>
 		            		<div class="col">
 		                		<div class="card-body">
