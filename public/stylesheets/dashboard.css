@@ -1,10 +1,10 @@
 /* page setting */
-/*html{
-  width:100%;
-  overflow-x:hidden;
-}*/
+html, section, .ng-scope, .container-fluid, .row {
+  width: : 100%;
+}
 body{
 	font-family: 'Merriweather Sans', sans-serif;
+	width: 100%;
 }
 h1{
 	font-size: 4rem;
@@ -22,7 +22,7 @@ input::-webkit-input-placeholder{text-align: center;}
 /* nav bar */
 .nav-btn{
 	font-weight: bold;
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 }
 .navbar-header {
     position: absolute;
@@ -42,6 +42,8 @@ input::-webkit-input-placeholder{text-align: center;}
 #searchSection{
 	background: url('./../assets/searchbg.jpg') center center no-repeat;
 	background-size: cover;
+	width: 100%;
+	padding-bottom: 25px;
 }
 .heading{
 	padding-top: 230px;
@@ -63,6 +65,7 @@ input::-webkit-input-placeholder{text-align: center;}
 	margin-left: 30px;
 	text-align: center;
 	text-align-last: center;
+	width: 100%;
 }
 .adv-select{
 	margin: 20px;
@@ -90,6 +93,7 @@ input::-webkit-input-placeholder{text-align: center;}
 #HMSection{
 	background: url('./../assets/mapbg.jpg') center center no-repeat;
 	background-size: cover;
+	width: 100%;
 }
 #HMDiv{
 	text-align: center;
@@ -139,8 +143,8 @@ input::-webkit-input-placeholder{text-align: center;}
 	font-family: 'Acme', sans-serif;
 }
 .panel {
- margin: 15px;
- padding-bottom: 25px;
+ 	margin: 10px;
+ 	padding-bottom: 25px;
 }
 .twt-col-title{
 	margin: 20px auto 20px;
@@ -153,20 +157,18 @@ input::-webkit-input-placeholder{text-align: center;}
 
 
 
-/* slides stlesheet */
+
+/* slides stylesheet */
 #testimonials{
 	background-color:#7D7D7D;
 	text-align:center;
 	line-height:1.5rem;
 }
-.carousel-item{
-	padding:4rem 5rem 5rem;
-}
 .slide-title{
 	font-size:2.5rem;
 	font-family: 'Acme', sans-serif;
-	margin-bottom:15px; 
-	color:#EDEDED;
+	margin: 100px 0 15px; 
+	color: #EDEDED;
 	transition: all .5s ease-in-out;
 }
 .slide-title:hover{
@@ -190,6 +192,7 @@ input::-webkit-input-placeholder{text-align: center;}
 .art-note{
 	color:#F2F2F2; 
 	font-size:1.25rem;
+	margin-bottom: 80px;
 }
 
 

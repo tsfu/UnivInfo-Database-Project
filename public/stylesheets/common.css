@@ -7,10 +7,11 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .nav-container {
-  margin: 20px auto;
+  margin: 20px;
 }
 
 .jumbotron {
