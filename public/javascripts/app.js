@@ -60,7 +60,7 @@ app.controller('searchController', function($scope, $http, $window) {
       names.push($scope.data[i].chronname)
     };
 
-    // load images:================ Bing Image Search API =========================
+    // load images:======================== Bing Image Search API ================================
     var apiKey = 'dbe754370f4442359fac9044521ce3be';
     var altImgSrc = "https://psmag.com/.image/t_share/MTI4NzE4MDAzMzE4NTk0MDE0/shutterstock_35935870jpg.jpg";
     $scope.imgs = [];
@@ -90,7 +90,7 @@ app.controller('searchController', function($scope, $http, $window) {
     }
     //$scope.imgs.sort();
     console.log($scope.imgs);
-    // ========================= image loading part END ==================================================================
+    // ====================================== image loading part END ==========================================
     
     // click on logo and direct to profile page:
     $scope.submit = function(x){
