@@ -98,8 +98,10 @@ app.controller('searchController', function($scope, $http, $window) {
       var request = $http.get('http://localhost:8081/showProfile/'+x);
   
       request.success(function(response){
+        console.log("response[0]"+response[0]);
         $window.localStorage.setItem("uprofile", JSON.stringify(response[0]));
         $window.localStorage.setItem("uid", x);
+        // $scope.d=response[0];
         window.location.href = "http://localhost:8081/uprofile";
 
         
@@ -115,28 +117,13 @@ app.controller('searchController', function($scope, $http, $window) {
 
 app.controller('searchProController', function($scope, $http, $window) {
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
-    $scope.d = i[0];
-    console.log("Uprofile: " );
-    console.log($scope.d);
-    
-
-
-  // var request = $http.get('/showResults/' + $scope.school);
-  // request.success(function(response){
-  //   console.log("SCOPE SENT!!!!!!!!!!!!!!!!!");
-  //   console.log(response + "!!!!!!!!!!!!DATA GOTTTT!!!!");
-  //   $scope.data = response;
-  // });
-
-  // request.error(function(data, status){
-  //   console.log('err', data, status);
-  // });
+    $scope.d = i;
+    console.log("Uprofile: " + $scope.d);
 });
 
 
 app.controller("recomController",function($scope, $http, $window){
  
-
     var uid = $window.localStorage.getItem("uid");
     $scope.uid = uid;
     var request0 = $http.get('http://localhost:8081/getTuition/'+ $scope.uid);
@@ -188,7 +175,33 @@ app.controller("recomController",function($scope, $http, $window){
           console.log('err', data, status);
         });
 
-        var JObj =  JSON.parse($window.localStorage.getItem("uprofile"));
+
+        var request3 = $http.get('http://localhost:8081/getRank/'+ uid);
+          request3.success(function(response){  
+          var rank = 200;
+          console.log(response);
+          if (response.length != 0){
+                rank = response[0].Rank;
+          }      
+               
+
+            var request33 = $http.get('http://localhost:8081/showRecom33/'+ uid + '/'+  rank);
+            request33.success(function(response){        
+              console.log("Recom33!!!!!!!!!!!!")           
+              $scope.r3 = response[0];
+           });
+      
+          request33.error(function(data, status){
+            console.log('err', data, status);
+          });
+
+          });
+    
+        request3.error(function(data, status){
+          console.log('err', data, status);
+        });
+
+       /* var JObj =  JSON.parse($window.localStorage.getItem("uprofile"));
         console.log("Rank Recom3");
         var rank = JObj["Rank"];
         console.log(JObj);
@@ -207,24 +220,23 @@ app.controller("recomController",function($scope, $http, $window){
           console.log('err', data, status);
         });
 
+
+
     $scope.recomPro=function(x){
-         console.log("Reom3 function x = "+x);
-        var request = $http.get('http://localhost:8081/showProfile/'+x);
-  
-        request.success(function(response){
-          $window.localStorage.setItem("uprofile", JSON.stringify(response));
-          $window.localStorage.setItem("uid", x);
-         window.location.href = "http://localhost:8081/uprofile";
+      console.log("Reom3 function x = "+x);
+      var request = $http.get('http://localhost:8081/showProfile/'+x);
 
-        
+      request.success(function(response){
+        $window.localStorage.setItem("uprofile", JSON.stringify(response));
+        $window.localStorage.setItem("uid", x);
+       window.location.href = "http://localhost:8081/uprofile";
       });
-  
-        request.error(function(data, status){
-          console.log('err', data, status);
-        });
 
+      request.error(function(data, status){
+        console.log('err', data, status);
+      });
     }
-
+*/
 
     // var i = JSON.parse($window.localStorage.getItem("recom1"));
     // if(i!=null){

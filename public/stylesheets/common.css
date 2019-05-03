@@ -1,16 +1,17 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: url('./../assets/bg.jpg') center center no-repeat fixed;
+  background: url('./../assets/commonbg.jpg') center center no-repeat fixed;
   height: 100vh;
   width: 100vw;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .nav-container {
-  margin: 20px auto;
+  margin: 20px;
 }
 
 .jumbotron {

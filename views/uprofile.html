@@ -32,28 +32,30 @@
 
 
 	    <div class="row no-gutters">
-	    	<!-- School Description -->
+	    	<!-- Profile School Description -->
 	    	<div class="col-md-7 left-col">
 				<div class="jumbotron jumbotron-fluid" style="border-radius:5px;">
 				  <img class="main-img" src="https://penntoday.upenn.edu/sites/default/files/2018-05/penn_trees.jpg">
 				  <div class="container" ng-controller="searchProController">
 				    <h3>{{d.chronname}}</h3>
-				    <p class="text-muted">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The annual tuition of this school is ${{d.tuition}}, and the average housing around campus is around ${{d.avg_housing_rate}} per year. For more details about this school, please refer to the shcool website: <a href="https://{{d.website}}">{{d.website}}</a></p>
-				    
+				    <p class="text-muted">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The annual tuition of this school is ${{d.tuition}}, and the average housing around campus is around ${{d.avg_housing_rate}} per year. For more details about this school, please refer to the shcool website: <a href="https://{{d.website}}">{{d.website}}</a></p>				    
 				  </div>
 				</div>
 			</div>
 
 
-	    	<!-- Recommendations -->
+	    	<!-- Similar Recommendations -->
 	    	<div class="col-md right-col" ng-controller="recomController">
 	    		<div class="cards-container">
 					<ul class="cards-lists">
+						
 						<!-- A card that contains brief college information. -->
-						<li class="card college-card" href="/uprofile">
+						<li class="card rec-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-		            			<!-- <h5>Tuition</h5> -->
+
+		            			<h5 class="rec-genre">Tuition</h5>
+
 		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r1.unitid)"></a>
 		            		</div>
 		            		<div class="col">
@@ -61,19 +63,19 @@
 		                    		<h4 class="card-title">{{r1.chronname}}</h4>
 		                    		<div class="card-subtitle">
 			                    		<a class="card-text college-website" href="https://{{r1.website}}">Visit Website</a>
-
 			                    		<p class="card-text text-muted college-desc">Description: {{r1.control}} University with an annual tuition of ${{r1.tuition}}.</p>
-
 		                    		</div>
 			                	</div>
 		            		</div>
 		        		  </div>
 				        </li>
 
-				        <li class="card college-card" href="/uprofile">
+				        <li class="card rec-card" href="/uprofile">
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-		            			<!-- <h5>Location</h5> -->
+
+		            			<h5 class="rec-genre">Location</h5>
+
 		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r2.unitid)"></a>
 		            		</div>
 		            		<div class="col">
@@ -88,10 +90,11 @@
 		        		  </div>
 				        </li>
 
-				        <li class="card college-card" >
+				        <li class="card rec-card" >
 				          <div class="row no-gutters">
 		            		<div class="col-auto img-div">
-		            			<!-- <h5>Ranking</h5> -->
+		            			<h5 class="rec-genre">Ranking</h5>
+
 		                		<a href=""><img src="https://home.www.upenn.edu/sites/default/files/styles/large_inline/public/logo1.gif?itok=sqXI2-M6" class="img-fluid card-img" alt="" ng-click="recomPro(r3.unitid)"></a>
 		            		</div>
 		            		<div class="col">
@@ -105,15 +108,11 @@
 		            		</div>
 		        		  </div>
 				        </li>
-
-				       
-				        <!-- show some more cards here..-->
+				        
+				        <!-- show some more cards here..? -->
 				    </ul>
     			</div>
 	    	</div>
-
-
-
 	    </div>
 
 
