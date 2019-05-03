@@ -219,31 +219,24 @@ router.get('/showRecom22/:state/:city/:uid', function(req, res){
     });
 });
 
-/*router.get('/showRecom3/:uid', function(req, res){
-  var uid = req.params.uid;
-  var rank=0;
 
-  var query1 = "SELECT * FROM test.university natural join test.rank where unitid="+uid+";";
+router.get('/showRecom3/:uid', function(req, res){
+  var uid = req.params.uid;
+  
+  var query1 = "SELECT * FROM test.university natural join test.rank r where r.Rank BETWEEN 32 AND 40 and unitid!="+uid+";";
   connection.query(query1, function(err, rows){
     if (err) console.log(err);
     else {
-        console.log("Recom3 "+rows[0]);
-        rank=Number(rows[0].Rank);
-        console.log(rank+"!!!!!!!!!!!!!!!");
-      }
-  });
-
-  var query2 =  "SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.rank r WHERE r.Rank BETWEEN" + (rank-5) + "AND" + (rank+5) + "AND u.unitid !="+ uid + ")tmp;";
-  connection.query(query2, function(err, rows) {
-    console.log("rows="+rows+"!!!");
-    if (err) console.log(err);
-    else {
-      res.json(rows);
+        console.log("Recom3 ");
+        console.log(rows[0]);
+        //rank=Number(rows[0]);
+        //console.log(rank+"!!!!!!!!!!!!!!!");
+        res.json(rows[0]);
       }
   });
 
 });
-*/
+
 
 
 // To add a new page, use the templete below

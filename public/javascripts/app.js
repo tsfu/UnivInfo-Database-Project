@@ -159,7 +159,7 @@ app.controller("recomController",function($scope, $http, $window){
           console.log('err', data, status);
         });
 
-var request2 = $http.get('http://localhost:8081/getLocation/'+ uid); 
+        var request2 = $http.get('http://localhost:8081/getLocation/'+ uid); 
         request2.success(function(response){
           console.log("help recom 2!");
           city = response[0].city;
@@ -187,16 +187,36 @@ var request2 = $http.get('http://localhost:8081/getLocation/'+ uid);
           console.log('err', data, status);
         });
 
-    //     var request3 = $http.get('http://localhost:8081/showRecom3/'+x);
+
+        var request3 = $http.get('http://localhost:8081/showRecom3/'+uid);
         
-    //     request3.success(function(response){
-    //       console.log("help recom 3!");
-    //        $window.localStorage.setItem("recom3", JSON.stringify(response));         
-    //     });
+        request3.success(function(response){
+          console.log("help recom 3!");
+          $scope.r3=response;
+           //$window.localStorage.setItem("recom3", JSON.stringify(response));         
+        });
       
-    //     request3.error(function(data, status){
-    //       console.log('err', data, status);
-    //     });
+        request3.error(function(data, status){
+          console.log('err', data, status);
+        });
+
+    $scope.recomPro=function(x){
+         console.log("Reom3 function x = "+x);
+        var request = $http.get('http://localhost:8081/showProfile/'+x);
+  
+        request.success(function(response){
+          $window.localStorage.setItem("uprofile", JSON.stringify(response));
+          $window.localStorage.setItem("uid", x);
+         window.location.href = "http://localhost:8081/uprofile";
+
+        
+      });
+  
+        request.error(function(data, status){
+          console.log('err', data, status);
+        });
+
+    }
 
 
     // var i = JSON.parse($window.localStorage.getItem("recom1"));
