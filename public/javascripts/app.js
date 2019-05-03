@@ -117,25 +117,11 @@ app.controller('searchProController', function($scope, $http, $window) {
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
     $scope.d = i[0];
     console.log("Uprofile: " + $scope.d);
-    
-
-
-  // var request = $http.get('/showResults/' + $scope.school);
-  // request.success(function(response){
-  //   console.log("SCOPE SENT!!!!!!!!!!!!!!!!!");
-  //   console.log(response + "!!!!!!!!!!!!DATA GOTTTT!!!!");
-  //   $scope.data = response;
-  // });
-
-  // request.error(function(data, status){
-  //   console.log('err', data, status);
-  // });
 });
 
 
 app.controller("recomController",function($scope, $http, $window){
  
-
     var uid = $window.localStorage.getItem("uid");
     $scope.uid = uid;
     var request0 = $http.get('http://localhost:8081/getTuition/'+ $scope.uid);
@@ -201,21 +187,18 @@ app.controller("recomController",function($scope, $http, $window){
         });
 
     $scope.recomPro=function(x){
-         console.log("Reom3 function x = "+x);
-        var request = $http.get('http://localhost:8081/showProfile/'+x);
-  
-        request.success(function(response){
-          $window.localStorage.setItem("uprofile", JSON.stringify(response));
-          $window.localStorage.setItem("uid", x);
-         window.location.href = "http://localhost:8081/uprofile";
+      console.log("Reom3 function x = "+x);
+      var request = $http.get('http://localhost:8081/showProfile/'+x);
 
-        
+      request.success(function(response){
+        $window.localStorage.setItem("uprofile", JSON.stringify(response));
+        $window.localStorage.setItem("uid", x);
+       window.location.href = "http://localhost:8081/uprofile";
       });
-  
-        request.error(function(data, status){
-          console.log('err', data, status);
-        });
 
+      request.error(function(data, status){
+        console.log('err', data, status);
+      });
     }
 
 
