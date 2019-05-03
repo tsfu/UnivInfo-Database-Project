@@ -98,7 +98,7 @@ app.controller('searchController', function($scope, $http, $window) {
       var request = $http.get('http://localhost:8081/showProfile/'+x);
   
       request.success(function(response){
-        $window.localStorage.setItem("uprofile", JSON.stringify(response));
+        $window.localStorage.setItem("uprofile", JSON.stringify(response[0]));
         $window.localStorage.setItem("uid", x);
         window.location.href = "http://localhost:8081/uprofile";
 
@@ -116,7 +116,8 @@ app.controller('searchController', function($scope, $http, $window) {
 app.controller('searchProController', function($scope, $http, $window) {
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
     $scope.d = i[0];
-    console.log("Uprofile: " + $scope.d);
+    console.log("Uprofile: " );
+    console.log($scope.d);
     
 
 
@@ -187,8 +188,14 @@ app.controller("recomController",function($scope, $http, $window){
           console.log('err', data, status);
         });
 
+        var JObj =  JSON.parse($window.localStorage.getItem("uprofile"));
+        console.log("Rank Recom3");
+        var rank = JObj["Rank"];
+        console.log(JObj);
+        console.log("rank!!="+rank);
 
-        var request3 = $http.get('http://localhost:8081/showRecom3/'+uid);
+
+        var request3 = $http.get('http://localhost:8081/showRecom3/'+uid+'/'+rank);
         
         request3.success(function(response){
           console.log("help recom 3!");

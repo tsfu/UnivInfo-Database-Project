@@ -142,7 +142,7 @@ router.get('/advResults', function(req, res){
 router.get('/showProfile/:uid', function(req, res){
   var school = req.params.uid;
   
-  var query =  "SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location NATURAL JOIN test.housing NATURAL JOIN test.award_tuition ;";
+  var query =  "SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location NATURAL JOIN test.housing NATURAL JOIN test.award_tuition NATURAL JOIN test.rank;";
   connection.query(query, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -220,9 +220,26 @@ router.get('/showRecom22/:state/:city/:uid', function(req, res){
 });
 
 
+router.get('/showRecom3/:uid/:rank', function(req, res){
+  var uid = req.params.uid;
+  var rank = req.params.rank;
+  var query1 = "SELECT * FROM test.university natural join test.rank r where r.Rank BETWEEN "+rank+"-1 AND "+rank+"+1 and unitid!="+uid+";";
+  connection.query(query1, function(err, rows){
+    if (err) console.log(err);
+    else {
+        console.log("Recom3 ");
+        console.log(rows[0]);
+        //rank=Number(rows[0]);
+        //console.log(rank+"!!!!!!!!!!!!!!!");
+        res.json(rows[0]);
+      }
+  });
+
+});
+
 router.get('/showRecom3/:uid', function(req, res){
   var uid = req.params.uid;
-  
+
   var query1 = "SELECT * FROM test.university natural join test.rank r where r.Rank BETWEEN 32 AND 40 and unitid!="+uid+";";
   connection.query(query1, function(err, rows){
     if (err) console.log(err);
@@ -236,6 +253,7 @@ router.get('/showRecom3/:uid', function(req, res){
   });
 
 });
+
 
 
 
