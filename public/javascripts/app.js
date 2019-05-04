@@ -1,6 +1,36 @@
 
 var app = angular.module('angularjsNodejsTutorial', []);
 
+app.controller('loginController', function($scope, $http) {
+  $scope.verifyLogin = function() {
+    // To check in the console if the variables are correctly storing the input:
+    // console.log($scope.username, $scope.password);
+
+    var request = $http({
+      url: '/login',
+      method: "POST",
+      data: {
+        'username': $scope.username,
+        'password': $scope.password
+      }
+    })
+
+    request.success(function(response) {
+      // success
+      console.log(response);
+      if (response.result === "success") {
+        // After you've written the INSERT query in routes/index.js, uncomment the following line
+        window.location.replace("http://localhost:8081/");
+      }
+    });
+    request.error(function(err) {
+      // failed
+      console.log("error: ", err);
+    });
+
+  };
+});
+
 // Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
   
@@ -235,7 +265,7 @@ app.controller("recomController",function($scope, $http, $window){
       
         request3.error(function(data, status){
           console.log('err', data, status);
-        });
+        });*/
 
 
 
@@ -253,9 +283,7 @@ app.controller("recomController",function($scope, $http, $window){
         console.log('err', data, status);
       });
     }
-*/
 
-    // var i = JSON.parse($window.localStorage.getItem("recom1"));
     // if(i!=null){
     // $scope.r1 = i[0];
     // console.log("Recom1: " + $scope.r1);}

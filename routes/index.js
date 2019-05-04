@@ -1,4 +1,6 @@
 var express = require('express');
+var now = require("performance-now");
+var fs = require('fs');
 
 // connect mongoose
 //mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
@@ -93,6 +95,11 @@ router.get('/showResults/:school', function(req, res){
       res.json(rows);
       }
   });
+  var date = new Date().toLocaleString();
+  fs.appendFile('QueryOpt.txt', 'Now Date ='+ date+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
 });
 
 
@@ -102,6 +109,7 @@ router.get('/advResults', function(req, res){
   var cost = req.query.c;
   var ranking = req.query.r;
   console.log("filter set = "+ type + state + cost + ranking + "!!!!!!!!!");
+
 
   // quert parts
   var str1 = "SELECT * FROM ( SELECT * FROM university "
@@ -127,7 +135,7 @@ router.get('/advResults', function(req, res){
 
   // final query 
   var query = str1 + str2 + str3 + str4 + str5 + str6;
-  
+  var t0 = now();
   connection.query(query, function(err, rows) {
     console.log("!!!!!Picked Results!!!!!! = " + rows);
     if (err) console.log(err);
@@ -136,13 +144,27 @@ router.get('/advResults', function(req, res){
       }
   });
 
-});
+   var date = new Date().toLocaleString();
+  fs.appendFile('QueryOpt.txt', 'Now Date ='+ date+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
+  var t1 = now();
 
+  fs.appendFile('QueryOpt.txt', 'advSearch query execution time ='+ (t1-t0)+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
+ 
+
+});
+  
 
 router.get('/showProfile/:uid', function(req, res){
   var school = req.params.uid;
   
   var query =  "SELECT L.unitid, city, statename, L.chronname, website, control, avg_housing_rate, tuition FROM (SELECT L1.unitid, L1.city, L1.statename, L1.chronname, website, control, avg_housing_rate FROM (SELECT * FROM (SELECT * FROM test.university WHERE unitid = "+school+") A1 NATURAL JOIN test.location) L1 left outer join test.housing H on H.city=L1.city and H.statename=L1.statename) L left outer join award_tuition T on L.unitid=T.unitid;";
+  var t0=now();
   connection.query(query, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -150,6 +172,9 @@ router.get('/showProfile/:uid', function(req, res){
       res.json(rows);
       }
   });
+
+  var t1 = now();
+  console.log("!! showProfile query execution time ="+ (t1-t0));
 });
 
 
@@ -170,6 +195,7 @@ router.get('/tuitionRec/:tuition/:uid', function(req, res){
   var uid = req.params.uid;
   var tuition = req.params.tuition;
   var query =  "SELECT * FROM(SELECT * FROM test.university u NATURAL JOIN test.award_tuition a WHERE a.tuition between 0.98* '"+tuition+"' AND 1.02* '"+tuition+"' AND u.unitid != '"+uid+"') tmp LIMIT 1;";
+  var t0=now();
   connection.query(query, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -177,6 +203,13 @@ router.get('/tuitionRec/:tuition/:uid', function(req, res){
       res.json(rows);
       }
   });
+
+  var t1 = now();
+  fs.appendFile('QueryOpt.txt', 'getTuition query execution time ='+ (t1-t0)+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
+  console.log("!! recomTuition query execution time ="+ (t1-t0));
 });
 
 
@@ -192,7 +225,7 @@ router.get('/getLocation/:uid', function(req, res){
         res.json(rows);
         }
     });
-  
+    
   
   
 });
@@ -210,6 +243,7 @@ router.get('/showRecom22/:state/:city/:uid', function(req, res){
 
     console.log("city: "+city+" state:"+state + " uid: "+ uid);
     var query2 =  'SELECT * FROM (SELECT * FROM test.university u NATURAL JOIN test.location l WHERE l.city = "'+city+'" AND l.statename = "'+state+'" AND u.unitid != "'+ uid +'") tmp;';
+    var t0=now();
     connection.query(query2, function(err, rows) {
       console.log(rows);
       if (err) console.log(err);
@@ -217,6 +251,16 @@ router.get('/showRecom22/:state/:city/:uid', function(req, res){
           res.json(rows);
         }
     });
+     var date = new Date().toLocaleString();
+  fs.appendFile('QueryOpt.txt', 'Now Date ='+ date+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
+    var t1 = now();
+  fs.appendFile('QueryOpt.txt', 'recomLocation query execution time ='+ (t1-t0)+'\n', function (err) {
+      if (err) throw err;
+      console.log('advSearch Saved!');
+  });
 });
 
 
