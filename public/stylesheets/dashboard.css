@@ -102,14 +102,14 @@ input::-webkit-input-placeholder{text-align: center;}
 }
 .heatmap-heading{
 	margin: 80px auto 0;
+	color: #423048;
 	font-size: 3rem;
 	font-weight: bold;
 	font-family: 'Acme', sans-serif;
 }
 .heatmap-img{
-	margin-top: 50px;
-	width: 600px;
-	height: 450px;
+	margin: 50px 20px 0;
+	width: 45%;
 }
 
 

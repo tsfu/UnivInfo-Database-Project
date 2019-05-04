@@ -1,5 +1,5 @@
-
 var app = angular.module('angularjsNodejsTutorial', []);
+
 
 app.controller('loginController', function($scope, $http) {
   $scope.verifyLogin = function() {
@@ -31,9 +31,9 @@ app.controller('loginController', function($scope, $http) {
   };
 });
 
+
 // Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
-  
   // name search
   $scope.beginSearch = function() {   
     console.log("school input is: " + $scope.school);
@@ -74,10 +74,11 @@ app.controller('submitSearchController', function($scope, $http, $window) {
       console.log('err', response, status);
     });
   }
-
 });
 
 
+
+// Result page controller
 app.controller('searchController', function($scope, $http, $window) {
     // load serach result JSON from localStorage, show results cards
     $scope.shared = JSON.parse($window.localStorage.getItem("rows"));
@@ -90,7 +91,7 @@ app.controller('searchController', function($scope, $http, $window) {
       names.push($scope.data[i].chronname)
     };
 
-    // load images:================ Bing Image Search API =========================
+    // load images:======================== Bing Image Search API ================================
     var apiKey = 'dbe754370f4442359fac9044521ce3be';
     var altImgSrc = "https://psmag.com/.image/t_share/MTI4NzE4MDAzMzE4NTk0MDE0/shutterstock_35935870jpg.jpg";
     $scope.imgs = [];
@@ -120,7 +121,7 @@ app.controller('searchController', function($scope, $http, $window) {
     }
     //$scope.imgs.sort();
     console.log($scope.imgs);
-    // ========================= image loading part END ==================================================================
+    // ====================================== image loading part END ==========================================
     
     // click on logo and direct to profile page:
     $scope.submit = function(x){
@@ -132,9 +133,7 @@ app.controller('searchController', function($scope, $http, $window) {
         $window.localStorage.setItem("uprofile", JSON.stringify(response[0]));
         $window.localStorage.setItem("uid", x);
         // $scope.d=response[0];
-        window.location.href = "http://localhost:8081/uprofile";
-
-        
+        window.location.href = "http://localhost:8081/uprofile";        
       });
   
       request.error(function(data, status){
@@ -145,138 +144,231 @@ app.controller('searchController', function($scope, $http, $window) {
 
 
 
+// Profile Page controller
 app.controller('searchProController', function($scope, $http, $window) {
+    // Get profile university JSON object from localStorage
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
-    // if(typeof i === 'undefined'){
-    //   $scope.d=
-    // }
+    $scope.d = i; 
+    // get university name for image API
+    var Uname = i['chronname'];
+    
+    // ==================== Fetch profile image ==========================
+    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var altImgSrc = "https://penntoday.upenn.edu/sites/default/files/2018-05/penn_trees.jpg";
+    $scope.imgSrc = "";
 
-    console.log(i["avg_housing_rate"]);
+    var requestImg = $http({ 
+        headers: {'Ocp-Apim-Subscription-Key': apiKey,},
+        url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="' + Uname + '"library',
+        method: "GET",
+        data: {} 
+    });
+
+    requestImg.success(function(response, imgSrc, imgSrcs){
+      imgSrc = response.value[0].contentUrl;
+      $scope.imgSrc = imgSrc;
+      console.log("!!!IMG RECEIVED!!!" + $scope.imgSrc);
+    });
+      
+    requestImg.error(function(err) {
+      console.log("error: ", err);
+      $scope.imgSrc = altImgSrc;
+    });
+    //========================== image received ============================
+    
     if(i["avg_housing_rate"] == null){
        i["avg_housing_rate"]=2000;
     }
-
     if(i["tuition"] == null){
       i["tuition"]=30000;
     }
-
-    $scope.d = i;
-    console.log("Uprofile: " + $scope.d);
+    $scope.d = i; // university Object
 });
 
 
+
+// profile page recommendation controller
 app.controller("recomController",function($scope, $http, $window){
  
+    // Prepare to get recommended schools' images
+    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var altImgSrc = "https://diylogodesigns.com/wp-content/uploads/2016/01/the-networked-university-logo.png";
+    $scope.imgSrc1 = "";
+    $scope.imgSrc2 = "";
+    $scope.imgSrc3 = "";
+
     var uid = $window.localStorage.getItem("uid");
     $scope.uid = uid;
+    
+    // Rec 0(1) : By Tuition
     var request0 = $http.get('http://localhost:8081/getTuition/'+ $scope.uid);
-     request0.success(function(response){         
-             var tuition = response[0].tuition;
-             $scope.tuition = tuition;
-          var request1 = $http.get('http://localhost:8081/tuitionRec/'+ $scope.tuition + '/'+  $scope.uid);
-          request1.success(function(response){        
-         console.log("yeah!!!!!!!!!!!!")
-         console.log(response[0]);
-         $scope.r1 = response[0];
-         });
     
-        request1.error(function(data, status){
-          console.log('err', data, status);
-        });
-
-        });
-    
-        request0.error(function(data, status){
-          console.log('err', data, status);
-        });
-
-        var request2 = $http.get('http://localhost:8081/getLocation/'+ uid); 
-        request2.success(function(response){
-          console.log("help recom 2!");
-          city = response[0].city;
-          state = response[0].statename;
-          $scope.city = city;
-          $scope.state = state;
-          console.log($scope.city);
-          console.log($scope.state);
-          var request22 = $http.get('http://localhost:8081/showRecom22/'+$scope.state+'/'+$scope.city+'/'+$scope.uid);
-          
-          request22.success(function(rows){
-            console.log("help recom 22!");
-            
-            if(rows.length == 0){
-               rows = [{"unitid":"154590","city":"Oskaloosa","statename":"IA","chronname":"William Penn University","website":"www.wmpenn.edu","control":"Private not-for-profit"}];
-            }
-            $scope.r2 = rows[0]; 
-            console.log($scope.r2);        
-          });
-  
-          request22.error(function(data, status){
-            console.log('err', data, status);
-          });
-        })
-          
-       
-  
-        request2.error(function(data, status){
-          console.log('err', data, status);
-        });
-
-
-        var request3 = $http.get('http://localhost:8081/getRank/'+ uid);
-          request3.success(function(response){  
-          var rank = 200;
-          console.log(response);
-          if (response.length != 0){
-                rank = response[0].Rank;
-          }      
-               
-
-            var request33 = $http.get('http://localhost:8081/showRecom33/'+ uid + '/'+  rank);
-            request33.success(function(response){        
-              console.log("Recom33!!!!!!!!!!!!")           
-              $scope.r3 = response[0];
-           });
+    request0.success(function(response){ 
+       var tuition = 30000;
+      if(response.length != 0){
+        tuition = response[0].tuition;
+      }        
       
-          request33.error(function(data, status){
-            console.log('err', data, status);
-          });
+      
+      $scope.tuition = tuition;
+      var request1 = $http.get('http://localhost:8081/tuitionRec/'+ $scope.tuition + '/'+  $scope.uid);
+      
+      request1.success(function(response){        
+        console.log("yeah!!!!!!!!!!!!")
+        console.log(response[0]);
+        $scope.r1 = response[0];
 
-          });
-    
-        request3.error(function(data, status){
-          console.log('err', data, status);
+        var Uname = $scope.r1.chronname;
+        var requestImg1 = $http({ 
+          headers: {'Ocp-Apim-Subscription-Key': apiKey,},
+          url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="' + Uname + '"logo',
+          method: "GET",
+          data: {} 
         });
+        requestImg1.success(function(response, imgSrc, imgSrcs){
+          imgSrc1 = response.value[0].contentUrl;
+          $scope.imgSrc1 = imgSrc1;
+          console.log("!!!IMG-1 RECEIVED!!!" + $scope.imgSrc1);
+        });
+        requestImg1.error(function(err) {
+          console.log("error: ", err);
+          $scope.imgSrc1 = altImgSrc;
+        });
+      });
+    
+      request1.error(function(data, status){
+        console.log('err', data, status);
+      });
+    });
+    
+    request0.error(function(data, status){
+      console.log('err', data, status);
+    });
 
-       /* var JObj =  JSON.parse($window.localStorage.getItem("uprofile"));
-        console.log("Rank Recom3");
-        var rank = JObj["Rank"];
-        console.log(JObj);
-        console.log("rank!!="+rank);
 
-
-        var request3 = $http.get('http://localhost:8081/showRecom3/'+uid+'/'+rank);
+    // Rec 2: By Location
+    var request2 = $http.get('http://localhost:8081/getLocation/'+ uid); 
+    request2.success(function(response){
+      console.log("help recom 2!");
+      city = response[0].city;
+      state = response[0].statename;
+      $scope.city = city;
+      $scope.state = state;
+      console.log($scope.city);
+      console.log($scope.state);
+      var request22 = $http.get('http://localhost:8081/showRecom22/'+$scope.state+'/'+$scope.city+'/'+$scope.uid);
+      
+      request22.success(function(rows){
+        console.log("help recom 22!");
         
-        request3.success(function(response){
-          console.log("help recom 3!");
-          $scope.r3=response;
-           //$window.localStorage.setItem("recom3", JSON.stringify(response));         
+        if(rows.length == 0){
+           rows = [{"unitid":"154590","city":"Oskaloosa","statename":"IA","chronname":"William Penn University","website":"www.wmpenn.edu","control":"Private not-for-profit"}];
+        }
+        $scope.r2 = rows[0]; 
+        console.log($scope.r2);  
+        
+        var Uname = $scope.r2.chronname 
+        var requestImg2 = $http({ 
+          headers: {'Ocp-Apim-Subscription-Key': apiKey,},
+          url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="' + Uname + '"logo',
+          method: "GET",
+          data: {} 
         });
-      
-        request3.error(function(data, status){
-          console.log('err', data, status);
-        });*/
+        requestImg2.success(function(response, imgSrc, imgSrcs){
+          imgSrc2 = response.value[0].contentUrl;
+          $scope.imgSrc2 = imgSrc2;
+          console.log("!!!IMG-2 RECEIVED!!!" + $scope.imgSrc2);
+        });
+        requestImg2.error(function(err) {
+          console.log("error: ", err);
+          $scope.imgSrc2 = altImgSrc;
+        });     
+      });
 
+      request22.error(function(data, status){
+        console.log('err', data, status);
+      });
+    })
+      
+    request2.error(function(data, status){
+      console.log('err', data, status);
+    });
+
+
+
+    // Rec 3: By Ranking
+    var request3 = $http.get('http://localhost:8081/getRank/'+ uid);
+      
+    request3.success(function(response){  
+      var rank = 200;
+      console.log(response);
+      if (response.length != 0){
+          rank = response[0].Rank;
+      }                 
+
+      var request33 = $http.get('http://localhost:8081/showRecom33/'+ uid + '/'+  rank);
+      
+      request33.success(function(response){        
+        console.log("Recom33!!!!!!!!!!!!")           
+        $scope.r3 = response[0];
+        
+        // Get image for rec 3 
+        var Uname = $scope.r3.chronname 
+        var requestImg3 = $http({ 
+          headers: {'Ocp-Apim-Subscription-Key': apiKey,},
+          url: 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="' + Uname + '"logo',
+          method: "GET",
+          data: {} 
+        });
+
+        requestImg3.success(function(response, imgSrc, imgSrcs){
+          imgSrc3 = response.value[0].contentUrl;
+          $scope.imgSrc3 = imgSrc3;
+          console.log("!!!IMG-3 RECEIVED!!!" + $scope.imgSrc3);
+        });
+        requestImg3.error(function(err) {
+          console.log("error: ", err);
+          $scope.imgSrc3 = altImgSrc;
+        });     
+      });
+      
+      request33.error(function(data, status){
+        console.log('err', data, status);
+      });
+    });
+
+
+    request3.error(function(data, status){
+      console.log('err', data, status);
+    });
+
+        // var JObj =  JSON.parse($window.localStorage.getItem("uprofile"));
+        // console.log("Rank Recom3");
+        // var rank = JObj["Rank"];
+        // console.log(JObj);
+        // console.log("rank!!="+rank);
+
+        // var request3 = $http.get('http://localhost:8081/showRecom3/'+uid+'/'+rank);
+        
+        // request3.success(function(response){
+        //   console.log("help recom 3!");
+        //   $scope.r3=response;
+        //    //$window.localStorage.setItem("recom3", JSON.stringify(response));         
+        // });
+      
+        // request3.error(function(data, status){
+        //   console.log('err', data, status);
+        // });
 
 
     $scope.recomPro=function(x){
-      console.log("Reom3 function x = "+x);
-      var request = $http.get('http://localhost:8081/showProfile/'+x);
+      console.log("Reom3 function x = " + x);
+      var request = $http.get('http://localhost:8081/showProfile/'+ x);
 
       request.success(function(response){
-        $window.localStorage.setItem("uprofile", JSON.stringify(response));
+        $window.localStorage.setItem("uprofile", JSON.stringify(response[0]));
         $window.localStorage.setItem("uid", x);
-       window.location.href = "http://localhost:8081/uprofile";
+        window.location.href = "http://localhost:8081/uprofile";
       });
 
       request.error(function(data, status){
