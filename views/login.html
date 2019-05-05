@@ -47,9 +47,11 @@
         //    your app or not.
         //
         // These three cases are handled in the callback function.
-        FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
-        });
+        
+        // !!!!!  do not automatically log me in !!!!!!
+        // FB.getLoginStatus(function(response) {
+        //   statusChangeCallback(response);
+        // });
       };
        
       // Load the SDK asynchronously
@@ -74,7 +76,8 @@
           <!--  fb-login -->
           <!--  <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" onlogin="checkLoginState();" data-auto-logout-link="true" data-use-continue-as="true"></div> --> 
 
-          <button class="btn btn-primary btn-block" style="background-color: #405D9D;" id="fbLogin" type="button"><i class="fab fa-facebook"></i> Sign in with <b>Facebook</b></button>
+          <button class="btn btn-primary btn-block fb-login-button" data-button-type="continue_with" onlogin="checkLoginState();" data-auto-logout-link="true" data-use-continue-as="true" style="background-color: #405D9D;" id="fbLogin" type="button"><i class="fab fa-facebook"></i> Sign in with <b>Facebook</b></button>
+          
           <div id="status"></div>
            <script type="text/javascript">
               document.getElementById('fbLogin').onclick =  function checkLoginState() {
@@ -104,11 +107,14 @@
                     console.log('Successful login for: ' + response.name);
                     document.getElementById('status').innerHTML =
                       'Thanks for logging in from Facebook, ' + response.name + '!';
-                  });
-                  //window.location.replace("http://localhost:8081/");
+                    window.localStorage.setItem("username", response.name);
+                    window.localStorage.setItem("loginStatus", "YES");
+                    window.location.replace("http://localhost:8081/");
+                  });                
+
               }
            </script>
-           <!--  fb-login -->
+           <!--  fb-login end -->
 
     <!--  Google-login -->
     <button id="customBtn" class="btn btn-danger btn-block" type="button"><i class="fab fa-google"></i> Sign in with <b>Google</b></button>       
@@ -134,16 +140,20 @@
         auth2.attachClickHandler(element, {},
           function(googleUser) {
             document.getElementById('name').innerText = "Thanks for logging in from Google, " + googleUser.getBasicProfile().getName()+"!";
-              var profile = auth2.currentUser.get().getBasicProfile();
+            window.localStorage.setItem("loginStatus", "YES");
+            
+            var profile = auth2.currentUser.get().getBasicProfile();
               console.log('ID: ' + profile.getId());
               console.log('Full Name: ' + profile.getName());
               console.log('Given Name: ' + profile.getGivenName());
               console.log('Family Name: ' + profile.getFamilyName());
               console.log('Image URL: ' + profile.getImageUrl());
               console.log('Email: ' + profile.getEmail());
-                }, function(error) {
-                  console.log(JSON.stringify(error, undefined, 2));
-                });
+              window.localStorage.setItem("username", profile.getGivenName());
+              window.location.replace("http://localhost:8081/");
+            }, function(error) {
+              console.log(JSON.stringify(error, undefined, 2));
+            });
       }
       startApp();
      
@@ -156,7 +166,7 @@
       // }
     </script>
         
-    <!--  Google-sigin -->         
+    <!--  Google-sigin end -->         
   </div>
 
    
