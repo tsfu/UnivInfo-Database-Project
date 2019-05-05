@@ -153,6 +153,7 @@ app.controller('searchProController', function($scope, $http, $window) {
     // Get profile university JSON object from localStorage
     var i = JSON.parse($window.localStorage.getItem("uprofile"));
     $scope.d = i; 
+    $scope.records=i.allmajor;
     // get university name for image API
     var Uname = i['chronname'];
     
