@@ -1,9 +1,25 @@
 var express = require('express');
 var now = require("performance-now");
 var fs = require('fs');
+// var mongoose = require('mongoose');
 
-// connect mongoose
-//mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
+// var mongoUtil = require( './routes/mongoUtil' );
+// var db = mongoUtil.getDb();
+
+// console.log(db.collection('Major').find());// // connect mongoose
+// mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
+
+const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("550project").collection("Major");
+//   // perform actions on the collection object
+
+
+//   client.close();
+// });
+
 
 var router = express.Router();
 var path = require('path');
