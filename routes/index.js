@@ -9,16 +9,18 @@ var fs = require('fs');
 // console.log(db.collection('Major').find());// // connect mongoose
 // mongoose.connect("mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true");
 
-const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://Janice:123abc@cluster0-eendv.mongodb.net/test?retryWrites=true";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("550project").collection("Major");
-//   // perform actions on the collection object
+var MongoClient = require('mongodb').MongoClient;
+var uri = "mongodb+srv://550:JK123@cluster0-eendv.mongodb.net/test?retryWrites=true";
+ 
+// MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("550Project");
+   
+//     // var data = dbo.collection("Major").find({"UNITID":100654});
+//     // console.log("mongo data:" + data);
 
-
-//   client.close();
 // });
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
 
 var router = express.Router();
@@ -185,7 +187,30 @@ router.get('/showProfile/:uid', function(req, res){
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
     else {
-      res.json(rows);
+      client.connect(err => {
+         var db = client.db("550Project");
+         var mquery= {UNITID:Number(school)};
+
+          db.collection("Major"). find(mquery).toArray(function(err, result) { 
+              if (err) throw err;
+              var array = ["Biology", "Business Administration", "Communications", "Computer Science", "Criminal Justice", "Marketing", "Economics"];
+              if(result.length != 0){
+                  console.log("result="+result[0]);
+                  array = result[0].allmajor;
+              }
+              
+              // console.log("!!!!!array="+array[0]);
+              var Jrows = JSON.stringify(rows);
+              var myrows = JSON.parse(Jrows);
+              myrows[0].allmajor=array;
+              res.send(myrows);
+              //myrows["allmajor"]=array;
+              
+              //client.close();
+          });
+      });
+      //res.json(rows);
+      
       }
   });
 
