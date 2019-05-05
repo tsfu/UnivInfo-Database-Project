@@ -49,6 +49,8 @@ app.controller('submitSearchController', function($scope, $http, $window) {
     alert("You have successfully logged out.");
     $scope.showLogin = true;
     $scope.showUser = false;
+    $window.localStorage.removeItem("loginStatus");
+    $window.localStorage.removeItem("username");
   }
 
   // name search
@@ -112,6 +114,8 @@ app.controller('searchController', function($scope, $http, $window) {
     alert("You have successfully logged out.");
     $scope.showLogin = true;
     $scope.showUser = false;
+    $window.localStorage.removeItem("loginStatus");
+    $window.localStorage.removeItem("username");
   }
 
     // load serach result JSON from localStorage, show results cards
@@ -195,6 +199,8 @@ app.controller('ProNavController', function($scope, $window) {
     alert("You have successfully logged out.");
     $scope.showLogin = true;
     $scope.showUser = false;
+    $window.localStorage.removeItem("loginStatus");
+    $window.localStorage.removeItem("username");
   }
 });
 
