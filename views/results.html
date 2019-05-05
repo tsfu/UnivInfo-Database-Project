@@ -16,13 +16,15 @@
 	    <!-- Include your custom css file here if you're making one -->
 	</head>
 
-	<body>
+	<body  ng-controller="searchController">
 		<!-- Nav Bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"> 
-    		<a class="navbar-brand navbar-header" href="/" id="logo"><em>UNIVINFO</em></a>
+    		<a class="navbar-brand" href="/" id="logo"><em>UNIVINFO</em></a>
       		<a class="navbar-right ml-auto text-light" href="/login">
-      			<button class="btn btn-success navbar nav-btn">Login</button>
+      			<button class="btn btn-success navbar nav-btn" ng-show="showLogin">Login</button>
       		</a>
+	  		<button class="btn btn-success nav-btn" ng-show="showUser" ng-click="clickName()">
+	  		<i class="far fa-user"></i> Hello {{username}}</button>
 	    </nav>
 
 	    <!-- Result Heading-->
@@ -32,7 +34,7 @@
 	    </div>
 
 
-		<div class="container-fluid cards-container" ng-controller="searchController">
+		<div class="container-fluid cards-container">
 			<ul class="cards-lists">
 				<!-- A card that contains brief college information. -->
 				<li ng-repeat = "d in data" class="card college-card" href="/uprofile">

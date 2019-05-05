@@ -68,7 +68,7 @@
 
  
   <div class="login-form">
-    <form action="/" method="post">
+    <form>
         <h3 class="text-center" style="font-weight: bold;">Sign in & Explore More</h3>    
         <div class="text-center social-btn">
           <!--  fb-login -->
@@ -160,35 +160,31 @@
   </div>
 
    
-    <div class="or-seperator"><i>or</i></div>
+        <div class="or-seperator"><i>or</i></div>
         
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="input-icon fas fa-user-circle fa-lg"></i></span>
           </div>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" ng-model="username">
         </div>
 
        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class="input-icon fas fa-lock fa-lg"></i></span>
           </div>
-          <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+          <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" ng-model="password">
         </div> 
         
         <div class="form-group">
-            <button class="btn btn-success btn-block signin-btn" onclick="directHome()">Sign in</button>
-            <script type="text/javascript">
-              function directHome(){
-                window.location.replace("https://localhost:8081/");
-              }
-            </script>
+            <button class="btn btn-success btn-block signin-btn" ng-click="verifyLogin()">Sign in</button>
         </div>
         <div class="clearfix">
             <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
             <a href="#" class="text-success forget">Forgot Password?</a>
         </div>          
     </form>
+    
     <div class="hint-text small">Don't have an account? <a href="/signup" class="text-success">Register Now!</a></div>
   </div>
                          

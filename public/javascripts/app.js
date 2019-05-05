@@ -1,10 +1,9 @@
 var app = angular.module('angularjsNodejsTutorial', []);
 
 
-app.controller('loginController', function($scope, $http) {
+app.controller('loginController', function($scope, $http, $window) {
   $scope.verifyLogin = function() {
     // To check in the console if the variables are correctly storing the input:
-    // console.log($scope.username, $scope.password);
 
     var request = $http({
       url: '/login',
@@ -19,12 +18,12 @@ app.controller('loginController', function($scope, $http) {
       // success
       console.log(response);
       if (response.result === "success") {
-        // After you've written the INSERT query in routes/index.js, uncomment the following line
+        $window.localStorage.setItem("loginStatus", "YES");
+        $window.localStorage.setItem("username", $scope.username);
         window.location.replace("http://localhost:8081/");
       }
     });
     request.error(function(err) {
-      // failed
       console.log("error: ", err);
     });
 
@@ -32,11 +31,25 @@ app.controller('loginController', function($scope, $http) {
 });
 
 
+
 // Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
-  // show login/out button
+  
+  // show login button OR user greeting
   $scope.showLogin = true;
-  $scope.showLogout = true;
+  $scope.showUser = false;
+  // if logged in
+  if($window.localStorage.getItem("loginStatus")==="YES"){
+    $scope.showLogin = false;
+    $scope.showUser = true;
+    $scope.username = $window.localStorage.getItem("username");
+  }
+  // click on name : log out
+  $scope.clickName = function(){
+    alert("You have successfully logged out.");
+    $scope.showLogin = true;
+    $scope.showUser = false;
+  }
 
   // name search
   $scope.beginSearch = function() {   
@@ -84,6 +97,23 @@ app.controller('submitSearchController', function($scope, $http, $window) {
 
 // Result page controller
 app.controller('searchController', function($scope, $http, $window) {
+    
+  // show login button OR user greeting
+  $scope.showLogin = true;
+  $scope.showUser = false;
+  // if logged in
+  if($window.localStorage.getItem("loginStatus")==="YES"){
+    $scope.showLogin = false;
+    $scope.showUser = true;
+    $scope.username = $window.localStorage.getItem("username");
+  }
+  // click on name : log out
+  $scope.clickName = function(){
+    alert("You have successfully logged out.");
+    $scope.showLogin = true;
+    $scope.showUser = false;
+  }
+
     // load serach result JSON from localStorage, show results cards
     $scope.shared = JSON.parse($window.localStorage.getItem("rows"));
     $scope.data = $scope.shared;
@@ -96,7 +126,7 @@ app.controller('searchController', function($scope, $http, $window) {
     };
 
     // load images:======================== Bing Image Search API ================================
-    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var apiKey = 'd1a994fd763f46b09b36b2316aa5e0b2';
     var altImgSrc = "https://psmag.com/.image/t_share/MTI4NzE4MDAzMzE4NTk0MDE0/shutterstock_35935870jpg.jpg";
     $scope.imgs = [];
     
@@ -148,6 +178,28 @@ app.controller('searchController', function($scope, $http, $window) {
 
 
 
+
+// Profile Nav-Bar controller
+app.controller('ProNavController', function($scope, $window) {   
+  // show login button OR user greeting
+  $scope.showLogin = true;
+  $scope.showUser = false;
+  // if logged in
+  if($window.localStorage.getItem("loginStatus")==="YES"){
+    $scope.showLogin = false;
+    $scope.showUser = true;
+    $scope.username = $window.localStorage.getItem("username");
+  }
+  // click on name : log out
+  $scope.clickName = function(){
+    alert("You have successfully logged out.");
+    $scope.showLogin = true;
+    $scope.showUser = false;
+  }
+});
+
+
+
 // Profile Page controller
 app.controller('searchProController', function($scope, $http, $window) {
     // Get profile university JSON object from localStorage
@@ -158,7 +210,7 @@ app.controller('searchProController', function($scope, $http, $window) {
     var Uname = i['chronname'];
     
     // ==================== Fetch profile image ==========================
-    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var apiKey = 'd1a994fd763f46b09b36b2316aa5e0b2';
     var altImgSrc = "https://penntoday.upenn.edu/sites/default/files/2018-05/penn_trees.jpg";
     $scope.imgSrc = "";
 
@@ -196,7 +248,7 @@ app.controller('searchProController', function($scope, $http, $window) {
 app.controller("recomController",function($scope, $http, $window){
  
     // Prepare to get recommended schools' images
-    var apiKey = 'dbe754370f4442359fac9044521ce3be';
+    var apiKey = 'd1a994fd763f46b09b36b2316aa5e0b2';
     var altImgSrc = "https://diylogodesigns.com/wp-content/uploads/2016/01/the-networked-university-logo.png";
     $scope.imgSrc1 = "";
     $scope.imgSrc2 = "";

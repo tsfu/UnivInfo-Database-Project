@@ -100,6 +100,24 @@ router.get('/login', function(req, res) {
 // });
 
 
+router.post('/login', function(req, res) {
+  // For now:
+  var username = req.body.username;
+  var password = req.body.password;
+  res.json({result: 'success'});
+
+  // var query = "INSERT IGNORE INTO User VALUES('" + req.body.username + "','" + req.body.password + "');";   
+  // connection.query(query, function(err, rows, fields) {
+  //   console.log("rows", rows);
+  //   console.log("fields", fields);
+  //   if (err) console.log('insert error: ', err);
+  //   else {
+  //     res.json({
+  //       result: 'success'
+  //     });
+  //   }
+  // });
+});
 
 
 router.get('/showResults/:school', function(req, res){

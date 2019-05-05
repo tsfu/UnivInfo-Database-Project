@@ -22,15 +22,16 @@
 
 <body ng-controller="submitSearchController">
 
-	
-
 	<!-- Nav Bar-->
 	<nav class="navbar navbar-light bg-light fixed-top">
-		<a class="navbar-brand navbar-header" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
-  		<a class="navbar-right ml-auto text-light" href="/login" ng-show="showLogin">
-  			<button class="btn btn-success navbar nav-btn">Login</button>
+		<a class="navbar-brand" href="/dashboard" id="logo"><em>UNIVINFO</em></a>
+  		<a class="navbar-right ml-auto text-light" href="/login">
+  			<button class="btn btn-success navbar nav-btn" ng-show="showLogin">Login</button>
   		</a>
+  		<button class="btn btn-success nav-btn" ng-show="showUser" ng-click="clickName()">
+  		<i class="far fa-user"></i> Hello {{username}}</button>
     </nav>
+
 
     <!-- search section -->
 	<section id="searchSection">

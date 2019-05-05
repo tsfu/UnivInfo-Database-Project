@@ -31,17 +31,12 @@ input::-webkit-input-placeholder{text-align: center;}
   margin-right: 10px;
 }
 
-.navbar-header {
-    position: absolute;
-    text-align: center;
-    width: 100%;
-}
-
 #logo{
   font-family: 'Acme',sans-serif;
   font-weight: bold;
   font-size: 2rem;
   color: #009CAD;
+  margin-left: 45%;
 }
 
 .footer{
