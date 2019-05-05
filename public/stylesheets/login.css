@@ -16,18 +16,19 @@
 }
 
 .login-form h3 {
-    margin: 25px 0 35px;
+    margin: 25px 0 15px;
 }
 
 .login-form .hint-text {
-color: #777;
-padding-bottom: 15px;
-text-align: center;
+  color: #777;
+  padding-bottom: 15px;
+  text-align: center;
 }
 
-.form-control, .btn {
-    min-height: 38px;
-    border-radius: 2px;
+.fbg-btn{
+  width: 200px;
+  height:40px;
+  margin: 25px auto 0;
 }
 
 .signin-btn {

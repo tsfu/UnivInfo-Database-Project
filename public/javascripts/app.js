@@ -34,6 +34,10 @@ app.controller('loginController', function($scope, $http) {
 
 // Dashboard controller - submit search, get result, and store in localStorage:
 app.controller('submitSearchController', function($scope, $http, $window) {
+  // show login/out button
+  $scope.showLogin = true;
+  $scope.showLogout = true;
+
   // name search
   $scope.beginSearch = function() {   
     console.log("school input is: " + $scope.school);
