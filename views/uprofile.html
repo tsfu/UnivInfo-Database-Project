@@ -37,13 +37,17 @@
 				<div class="jumbotron jumbotron-fluid" style="border-radius:5px;">
 				  <img class="main-img" ng-src={{imgSrc}}>
 				  <div class="container">
+				  	<!-- show description -->
 				    <h3 style="font-weight: bold;">{{d.chronname}}</h3>
 				    <p class="profile-desc">{{d.chronname}} is a {{d.control}} school located in {{d.city}},{{d.statename}}. The annual tuition of this school is ${{d.tuition}}, and the average housing around campus is around ${{d.avg_housing_rate}} per month. For more details about this school, please refer to the shcool website: <a href="https://{{d.website}}">{{d.website}}</a></p>
-
-				    <br>
-
-				    <h5 >{{d.chronname}}'s Major List</h5>
-				    <p ng-repeat="x in records">{{x}}</p>			    
+				    <!-- show majors -->
+				    <div class="major-hr"><i></i></div>
+				    <div style="text-align: center;">
+				    	<h5 class="major-heading"><i class="fas fa-user-graduate"></i> Major List - {{d.chronname}}</h5>
+					</div>
+				    <ul>
+				    	<li class="major-item" ng-repeat="x in records">{{x}}</li>
+				    </ul>			    
 				  </div>
 				</div>
 			</div>

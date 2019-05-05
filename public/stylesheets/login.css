@@ -16,7 +16,7 @@
 }
 
 .login-form h3 {
-    margin: 25px 0 15px;
+    margin: 25px 0 35px;
 }
 
 .login-form .hint-text {
@@ -59,7 +59,7 @@
 .social-btn .btn i {
   float: left;
   margin: 4px 15px  0 5px;
-      min-width: 15px;
+  min-width: 15px;
 }
 
 .input-group-addon .fa{

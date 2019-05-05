@@ -23,6 +23,21 @@ input::-webkit-input-placeholder{text-align: center;}
 	font-size: 1.15rem;
 	color: #A2A2A2;
 }
+.major-hr {
+    margin: 40px 0 15px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+.major-heading{
+	margin: 25px auto 25px;
+	font-weight: bold;
+	font-size: 1.3rem;
+	color: #37b5d2;
+}
+.major-item{
+	margin-bottom: 20px;
+	font-size: 1.15rem;
+}
 
 
 /*rec-cards-sytle*/
