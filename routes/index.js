@@ -26,6 +26,16 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 var router = express.Router();
 var path = require('path');
 var mysql = require('mysql');
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//   host     : 'project550.czgstkqm3tfs.us-east-2.rds.amazonaws.com',
+//   user     : 'kengpian',
+//   password : '550project!',
+//   port     : '3306'
+// });
+
+
 var connection = mysql.createConnection({
   host: 'fling.seas.upenn.edu',
   user: 'kengpian',
@@ -123,7 +133,7 @@ router.post('/login', function(req, res) {
 router.get('/showResults/:school', function(req, res){
   var school = req.params.school;
   console.log("school="+school+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  var query =  "select * from (select unitid, chronname, website, control from university where UPPER(chronname) like UPPER('%"+school+"%')) A natural join location L;";
+  var query =  "select * from (select unitid, chronname, website, control from test.university where UPPER(chronname) like UPPER('%"+school+"%')) A natural join test.location L;";
   connection.query(query, function(err, rows) {
     console.log("rows="+rows+"!!!");
     if (err) console.log(err);
@@ -149,10 +159,10 @@ router.get('/advResults', function(req, res){
 
   // quert parts
   var str1 = "SELECT * FROM ( SELECT * FROM university "
-  var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM university WHERE flagship = " + type + ")AS F1 "
-  var str3 = "NATURAL JOIN (SELECT * FROM location WHERE statename = '" + state + "')AS F2 "
-  var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM award_tuition WHERE tuition < " + cost + ")AS F3 "
-  var str5 = "NATURAL JOIN (SELECT * FROM rank WHERE Rank < " + ranking + ")AS F4 "
+  var str2 = "NATURAL JOIN (SELECT unitid, chronname, flagship, website FROM test.university WHERE flagship = " + type + ")AS F1 "
+  var str3 = "NATURAL JOIN (SELECT * FROM test.location WHERE statename = '" + state + "')AS F2 "
+  var str4 = "NATURAL JOIN (SELECT unitid, chronname, tuition FROM test.award_tuition WHERE tuition < " + cost + ")AS F3 "
+  var str5 = "NATURAL JOIN (SELECT * FROM test.rank WHERE Rank < " + ranking + ")AS F4 "
   var str6 = ")AS F LIMIT 5;"
 
   // if user leave some filter as blank:
