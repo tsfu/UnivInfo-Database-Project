@@ -407,3 +407,10 @@ Now Date =5/6/2019, 11:05:35 AM
 Now Date =5/6/2019, 11:06:01 AM
 Now Date =5/6/2019, 11:06:33 AM
 
+Now Date =2019-5-8 21:38:12
+getTuition query execution time =0.2861010000015085
+Now Date =2019-5-8 21:38:15
+recomLocation query execution time =0.2275119999976596
+getTuition query execution time =0.2664279999953578
+recomLocation query execution time =0.2647170000054757
+Now Date =2019-5-8 21:38:20
